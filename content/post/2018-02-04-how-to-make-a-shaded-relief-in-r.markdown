@@ -1,0 +1,30 @@
+---
+title: How to make a shaded relief in R
+author: Elio Campitelli
+date: '2018-02-04'
+slug: how-to-make-shaded-relief-in-r
+categories:
+  - R
+tags: []
+---
+
+[Spanish version of this post](/2018/02/como-hacer-efecto-de-relieve-en-r)
+
+While trying to build a circular colour scale to plot angles and wind direction, I stumbled upon an easy way to make shaded reliefs in R. You known, when you look at cool maps of mountain areas where peaks and valleys are easily distinguishable from their shadows like this:
+
+![](/images/shading.jpg)
+
+What I accidentally discovered is that one way of approximating this look is by taking the directional derivatives of height and then plotting the cosine of its angle from the sun. After some further research I learned that this is actually done in cartography and is called [*aspect-based shading*](http://www.reliefshading.com/analytical/shading-methods/). I also learned that it's not the best method, and I'm itching to try others. But for now, let's keep things simple and [get stuff actually done](https://kkulma.github.io/2017-12-29-end-of-year-thoughts/).
+
+Just as an example, I will be using our old friend, the `volcano` database. I will be also using `data.table` syntax because that how I roll. Deal with it, `dplyr` lovers :sunglasses:.
+
+
+```r
+library(data.table)
+library(ggplot2)
+data(volcano)
+volcano <- as.data.table(melt(volcano, varnames = c("x", "y"),
+                              value.name = "h"))
+```
+
+So then I take the derivative (this is a function I made in my personal package, but bear with me :pray:) and take the angle. The minus sign are there... well, because it works --I'm not sure about the exact maths here.
