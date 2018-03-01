@@ -1,0 +1,37 @@
+---
+title: title
+author: cabrokiller
+date: '2018-01-03'
+slug: imputacion
+categories:
+  - R
+tags: ["r"]
+---
+
+# Imputación de datos en R
+## Introducción
+En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los *valores ausentes* (NA's).
+
+Una alternativa es *eliminar* los NA's, pero esto conlleva al menos dos problemas. 
+ 1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio. 
+ 2. Otro problema importante es que podemos caer en un riesgo de selección si la falta de datos tiene relación con alguna de las vainas relevantes. 
+
+Otras alternativas comúnmente utilizadas son las de reemplazar los NA's por algún estadístico de tendencia central (media, mediana o moda para variables categoriales) esto solventa en parte los problemas, pero agregamos muchos casos con la media a una muestra, estamos distinto su variabilidad.
+
+De aquí a que existan diferentes alternativas para lidiar con este problema.
+
+## Exploración de NA's
+Un primer paso como en cualquier trabajo de análisis de datos implica un *análisis exploratorio* de los NA para
+
+### Frecuencia de NA
+En primer lugar se debe establecer la frecuencia de NA por *casos* y *variables* y definir un nivel de tolerancia para la imputación de datos. Si bien no hay (o yo no sé) de un estándar, se suele considerar que para una correcta imputación, el porcentaje de NA debe ser menor de un 10 %.
+
+### Patrón de NA
+Luego es necesario explorar el patrón de NA y valorar si es que los NA se rigen por un patrón aleatorio ("missing at random" o MAR) o por un patrón no aleatorio ("missing not at random" o MNAR). Una buena aproximación a eso es él examen visual del pistón de NA, que resulta fácil con el paquete VIM.
+
+En general, los diferentes métodos de impresión pueden lidiar con variables MAR. Las variables MINAR conllevan más problemas en cuanto a la imputación, y muchas veces es necesario hacer un análisis de sensibilidad posterior para valorar la imputación.
+
+### Método de imputación
+Una vez que hemos establecido la necesidad de imputación, toca seleccionar que metodología utilizaremos. El método en cuestión va a depender en parte de:
+ - El tipo de variable (numérica, categorial, binaria...)
+ - El tipo de modelo que aplicaremos (regresión lineal, PCA...)
