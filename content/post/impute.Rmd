@@ -15,13 +15,13 @@ draft: true
 
 ## Intro
 
-Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema... Faltan datos. Casos incompletos, escalas sin pasar, *dropouts*, o el que el desgraciado intertno asignado a pasar los datos era un poco vago... En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos *valores ausentes* (NA's).
+Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema... Faltan datos. Casos incompletos, escalas sin pasar, *dropouts*, o que el desgraciado interno asignado a pasar los datos era un poco vago... En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos *valores ausentes* (NA's).
 
 Una alternativa es *eliminar* los NA's. Ya está!, fuera con todos los casos incompletos, pero esto tiene dos proeblmas. 
  1. A menos número de casos disminuye la potencia del estudio, y esto no es bueno, no?
  2. Hay un sesgo de selección si es que la falta de datos tiene relación con alguna de las variables relevantes. 
 
-Pues y que diablos hacemos entonces? pues podemos *imputar* los datos que faltan.
+Pues ¿y que diablos hacemos entonces? pues podemos *imputar* los datos que faltan.
 
 ## Explorar NA
 El primer paso como en cualquier trabajo de análisis de datos decente, implica un *análisis exploratorio* de los NA. En R esto esto se cosigue fácil y de manera gráfica con a librería `VIM`.

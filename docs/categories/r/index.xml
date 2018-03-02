@@ -17,27 +17,7 @@
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>https://cabrokiller.github.io/blog/2018/02/chuca/</guid>
-      <description>funciona por favor</description>
-    </item>
-    
-    <item>
-      <title>title</title>
-      <link>https://cabrokiller.github.io/blog/2018/01/imputacion/</link>
-      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cabrokiller.github.io/blog/2018/01/imputacion/</guid>
-      <description>Imputación de datos en RIntroducciónEn ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los valores ausentes (NA’s).
-Una alternativa es eliminar los NA’s, pero esto conlleva al menos dos problemas.1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio.</description>
-    </item>
-    
-    <item>
-      <title>title</title>
-      <link>https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/</link>
-      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/</guid>
-      <description>Vale, que ya pillo algo de R. Y ahora como diablos lo hago servir para algo? Pues bueno, a ver si hacemos una regresión lineal. Simple… Que se entienda lo que hacemos…
-Vamos a utilizar una de las bases de datos de R que viene en el universo de tidyverse. Una base chula es la diamonds que tiene un registro de 50 mil y pico diamantes, con varias variables numéricas (kilates, tamaño…) y categóricas (color, claridad, corte…).</description>
+      <description>en construccion</description>
     </item>
     
   </channel>

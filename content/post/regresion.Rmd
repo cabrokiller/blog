@@ -6,6 +6,7 @@ slug: regresión lineal
 categories:
   - R
 tags: ["r"]
+draft: true
 ---
 
 Vale, que ya pillo algo de R. Y ahora como diablos lo hago servir para algo? Pues bueno, a ver si hacemos una regresión lineal. Simple... Que se entienda lo que hacemos... 
