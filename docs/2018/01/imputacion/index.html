@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.36.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>chuca</title>
+    <title>title</title>
     <meta name="author" content="Cabro Killer">
     <meta name="keywords" content=", R">
 
@@ -30,15 +30,18 @@
     
 
     
-    <meta name="description" content="funciona por favor">
-    <meta property="og:description" content="funciona por favor">
+    <meta name="description" content="Imputación de datos en RIntroducciónEn ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los valores ausentes (NA’s).
+Una alternativa es eliminar los NA’s, pero esto conlleva al menos dos problemas.1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio.">
+    <meta property="og:description" content="Imputación de datos en RIntroducciónEn ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los valores ausentes (NA’s).
+Una alternativa es eliminar los NA’s, pero esto conlleva al menos dos problemas.1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="chuca">
-    <meta property="og:url" content="/2018/02/chuca/">
+    <meta property="og:title" content="title">
+    <meta property="og:url" content="/2018/01/imputacion/">
     <meta property="og:site_name" content="R suena">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="R suena">
-    <meta name="twitter:description" content="funciona por favor">
+    <meta name="twitter:description" content="Imputación de datos en RIntroducciónEn ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los valores ausentes (NA’s).
+Una alternativa es eliminar los NA’s, pero esto conlleva al menos dos problemas.1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio.">
     
     
 
@@ -191,19 +194,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      chuca
+      title
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-02-28T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-01-03T00:00:00Z">
         
   
   
   
   
-    28 de Febrero 2018
+    3 de Enero 2018
   
 
       </time>
@@ -234,13 +237,53 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>funciona por favor</p>
+              <div id="imputacion-de-datos-en-r" class="section level1">
+<h1>Imputación de datos en R</h1>
+<div id="introduccion" class="section level2">
+<h2>Introducción</h2>
+<p>En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los <em>valores ausentes</em> (NA’s).</p>
+<p>Una alternativa es <em>eliminar</em> los NA’s, pero esto conlleva al menos dos problemas.
+1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio.
+2. Otro problema importante es que podemos caer en un riesgo de selección si la falta de datos tiene relación con alguna de las vainas relevantes.</p>
+<p>Otras alternativas comúnmente utilizadas son las de reemplazar los NA’s por algún estadístico de tendencia central (media, mediana o moda para variables categoriales) esto solventa en parte los problemas, pero agregamos muchos casos con la media a una muestra, estamos distinto su variabilidad.</p>
+<p>De aquí a que existan diferentes alternativas para lidiar con este problema.</p>
+</div>
+<div id="exploracion-de-nas" class="section level2">
+<h2>Exploración de NA’s</h2>
+<p>Un primer paso como en cualquier trabajo de análisis de datos implica un <em>análisis exploratorio</em> de los NA para</p>
+<div id="frecuencia-de-na" class="section level3">
+<h3>Frecuencia de NA</h3>
+<p>En primer lugar se debe establecer la frecuencia de NA por <em>casos</em> y <em>variables</em> y definir un nivel de tolerancia para la imputación de datos. Si bien no hay (o yo no sé) de un estándar, se suele considerar que para una correcta imputación, el porcentaje de NA debe ser menor de un 10 %.</p>
+</div>
+<div id="patron-de-na" class="section level3">
+<h3>Patrón de NA</h3>
+<p>Luego es necesario explorar el patrón de NA y valorar si es que los NA se rigen por un patrón aleatorio (“missing at random” o MAR) o por un patrón no aleatorio (“missing not at random” o MNAR). Una buena aproximación a eso es él examen visual del pistón de NA, que resulta fácil con el paquete VIM.</p>
+<p>En general, los diferentes métodos de impresión pueden lidiar con variables MAR. Las variables MINAR conllevan más problemas en cuanto a la imputación, y muchas veces es necesario hacer un análisis de sensibilidad posterior para valorar la imputación.</p>
+</div>
+<div id="metodo-de-imputacion" class="section level3">
+<h3>Método de imputación</h3>
+<p>Una vez que hemos establecido la necesidad de imputación, toca seleccionar que metodología utilizaremos. El método en cuestión va a depender en parte de:
+- El tipo de variable (numérica, categorial, binaria…)
+- El tipo de modelo que aplicaremos (regresión lineal, PCA…)</p>
+</div>
+</div>
+</div>
 
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO EN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r/">r</a>
+
+                  </div>
+                
               
             
             
@@ -250,7 +293,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/02/chuca/" data-tooltip="chuca">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">SIGUIENTE</span>
@@ -258,7 +301,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="title">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/regresi%C3%B3n-lineal/" data-tooltip="title">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -276,19 +319,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/01/imputacion/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/01/imputacion/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/01/imputacion/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -336,7 +379,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/02/chuca/" data-tooltip="chuca">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">SIGUIENTE</span>
@@ -344,7 +387,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="title">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/regresi%C3%B3n-lineal/" data-tooltip="title">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -362,19 +405,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/01/imputacion/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/01/imputacion/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/01/imputacion/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -404,19 +447,19 @@
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F02%2Fchuca%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F01%2Fimputacion%2F">
           <i class="fa fa-facebook-official"></i><span>Compartir en Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F02%2Fchuca%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F01%2Fimputacion%2F">
           <i class="fa fa-twitter"></i><span>Compartir en Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F02%2Fchuca%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F01%2Fimputacion%2F">
           <i class="fa fa-google-plus"></i><span>Compartir en Google&#43;</span>
         </a>
       </li>
@@ -570,9 +613,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/cabrokiller.github.io\/blog\/2018\/02\/chuca\/';
+          this.page.url = 'https:\/\/cabrokiller.github.io\/blog\/2018\/01\/imputacion\/';
           
-            this.page.identifier = '\/2018\/02\/chuca\/'
+            this.page.identifier = '\/2018\/01\/imputacion\/'
           
         };
         (function() {

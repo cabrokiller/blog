@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on R suena</title>
-    <link>https://cabrokiller.github.io/blog/post/</link>
-    <description>Recent content in Posts on R suena</description>
+    <title>R on R suena</title>
+    <link>https://cabrokiller.github.io/blog/tags/r/</link>
+    <description>Recent content in R on R suena</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
-    <lastBuildDate>Wed, 28 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://cabrokiller.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cabrokiller.github.io/blog/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>chuca</title>
-      <link>https://cabrokiller.github.io/blog/2018/02/chuca/</link>
-      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://cabrokiller.github.io/blog/2018/02/chuca/</guid>
-      <description>funciona por favor</description>
-    </item>
     
     <item>
       <title>title</title>

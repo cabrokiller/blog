@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.36.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>chuca</title>
+    <title>title</title>
     <meta name="author" content="Cabro Killer">
     <meta name="keywords" content=", R">
 
@@ -30,15 +30,18 @@
     
 
     
-    <meta name="description" content="funciona por favor">
-    <meta property="og:description" content="funciona por favor">
+    <meta name="description" content="Vale, que ya pillo algo de R. Y ahora como diablos lo hago servir para algo? Pues bueno, a ver si hacemos una regresión lineal. Simple… Que se entienda lo que hacemos…
+Vamos a utilizar una de las bases de datos de R que viene en el universo de tidyverse. Una base chula es la diamonds que tiene un registro de 50 mil y pico diamantes, con varias variables numéricas (kilates, tamaño…) y categóricas (color, claridad, corte…).">
+    <meta property="og:description" content="Vale, que ya pillo algo de R. Y ahora como diablos lo hago servir para algo? Pues bueno, a ver si hacemos una regresión lineal. Simple… Que se entienda lo que hacemos…
+Vamos a utilizar una de las bases de datos de R que viene en el universo de tidyverse. Una base chula es la diamonds que tiene un registro de 50 mil y pico diamantes, con varias variables numéricas (kilates, tamaño…) y categóricas (color, claridad, corte…).">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="chuca">
-    <meta property="og:url" content="/2018/02/chuca/">
+    <meta property="og:title" content="title">
+    <meta property="og:url" content="/2018/01/regresi%C3%B3n-lineal/">
     <meta property="og:site_name" content="R suena">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="R suena">
-    <meta name="twitter:description" content="funciona por favor">
+    <meta name="twitter:description" content="Vale, que ya pillo algo de R. Y ahora como diablos lo hago servir para algo? Pues bueno, a ver si hacemos una regresión lineal. Simple… Que se entienda lo que hacemos…
+Vamos a utilizar una de las bases de datos de R que viene en el universo de tidyverse. Una base chula es la diamonds que tiene un registro de 50 mil y pico diamantes, con varias variables numéricas (kilates, tamaño…) y categóricas (color, claridad, corte…).">
     
     
 
@@ -191,19 +194,19 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      chuca
+      title
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-02-28T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-01-03T00:00:00Z">
         
   
   
   
   
-    28 de Febrero 2018
+    3 de Enero 2018
   
 
       </time>
@@ -234,13 +237,75 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>funciona por favor</p>
+              <p>Vale, que ya pillo algo de R. Y ahora como diablos lo hago servir para algo? Pues bueno, a ver si hacemos una regresión lineal. Simple… Que se entienda lo que hacemos…</p>
+<p>Vamos a utilizar una de las bases de datos de R que viene en el universo de <a href="https://www.tidyverse.org/">tidyverse</a>. Una base chula es la <code>diamonds</code> que tiene un registro de 50 mil y pico diamantes, con varias variables numéricas (kilates, tamaño…) y categóricas (color, claridad, corte…). En mi vida he visto un diamante… Como vamos a hacer una regresion lineal, nos ocuparemos sólo de las <strong>variables numéricas</strong>.</p>
+<p>Primero y antes de ponerse a buscar esa maldita <em>p</em> (<a href="http://freakonometrics.hypotheses.org/19817">p-hacking</a> le llaman los americanos), y como siempre en cualquier análisis de datos decente, vamos a <strong>mirar</strong> los malditos datos. Lo mas facilito es hacer un <em>scatter-plot</em>, que permite ver relaciones entre dos (o mas) variables.</p>
+<p>Como iba a ser, nos interesa el <strong>precio</strong> y si tiene una relación con algunas de las otras variables. Miramos la relacion con los kilates (<em>carat</em>) y con el largo (<em>x</em>), y porque somos chulos, le agregamos la línea de regresión lineal a ver si se ajusta.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ------------------------------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 2.2.1     v purrr   0.2.4
+## v tibble  1.4.1     v dplyr   0.7.4
+## v tidyr   0.7.2     v stringr 1.2.0
+## v readr   1.1.1     v forcats 0.2.0</code></pre>
+<pre><code>## -- Conflicts ---------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>diamonds %&gt;%
+   ggplot(aes(carat, price)) +
+   geom_point(alpha = .05) +
+   geom_smooth(method = &quot;lm&quot;, color = &quot;darkgreen&quot;)+
+   coord_cartesian(xlim = c(0,5), ylim =  c(0,20000)) +
+   theme_minimal()</code></pre>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-1-1.png" width="672" /></p>
+<p>se ajusta bien</p>
+<pre class="r"><code>diamonds %&gt;%
+   ggplot(aes(x, price)) +
+   geom_point(alpha = .05) +
+   geom_smooth(method = &quot;lm&quot;, color = &quot;darkgreen&quot;, formula = y ~ poly(x, 2)) +
+   geom_smooth(method = &quot;lm&quot;, color = &quot;darkred&quot;, formula = y ~ x) +
+   coord_cartesian(xlim = c(3,10), ylim =  c(0,20000)) +
+   theme_minimal()</code></pre>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Es evidente que a mayor tamaño y mayor peso, mejor precio, auqneu aqui quisaz sería mejor un modelo exp.</p>
+<p>Hacemos los modelos, no?</p>
+<pre class="r"><code>model1 &lt;- lm(price ~ x, data = diamonds)
+model2 &lt;- lm(price ~ poly(x, 2), data = diamonds)
+summary(model2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = price ~ poly(x, 2), data = diamonds)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -18820.1   -536.9    -25.2    271.6  12854.7 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 3.933e+03  6.446e+00   610.1   &lt;2e-16 ***
+## poly(x, 2)1 8.195e+05  1.497e+03   547.3   &lt;2e-16 ***
+## poly(x, 2)2 2.570e+05  1.497e+03   171.7   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1497 on 53937 degrees of freedom
+## Multiple R-squared:  0.8592, Adjusted R-squared:  0.8592 
+## F-statistic: 1.645e+05 on 2 and 53937 DF,  p-value: &lt; 2.2e-16</code></pre>
 
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">ETIQUETADO EN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r/">r</a>
+
+                  </div>
+                
               
             
             
@@ -250,7 +315,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="title">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">SIGUIENTE</span>
@@ -258,7 +323,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="title">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -276,19 +341,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -336,7 +401,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="title">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">SIGUIENTE</span>
@@ -344,7 +409,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="title">
+                <a class="post-action-btn btn btn--disabled">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -362,19 +427,19 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/02/chuca/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/01/regresi%C3%B3n-lineal/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -404,19 +469,19 @@
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F02%2Fchuca%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F01%2Fregresi%25C3%25B3n-lineal%2F">
           <i class="fa fa-facebook-official"></i><span>Compartir en Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F02%2Fchuca%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F01%2Fregresi%25C3%25B3n-lineal%2F">
           <i class="fa fa-twitter"></i><span>Compartir en Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F02%2Fchuca%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F01%2Fregresi%25C3%25B3n-lineal%2F">
           <i class="fa fa-google-plus"></i><span>Compartir en Google&#43;</span>
         </a>
       </li>
@@ -570,9 +635,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/cabrokiller.github.io\/blog\/2018\/02\/chuca\/';
+          this.page.url = 'https:\/\/cabrokiller.github.io\/blog\/2018\/01\/regresi%C3%B3n-lineal\/';
           
-            this.page.identifier = '\/2018\/02\/chuca\/'
+            this.page.identifier = '\/2018\/01\/regresi%C3%B3n-lineal\/'
           
         };
         (function() {

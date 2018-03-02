@@ -1,27 +1,62 @@
 ---
-title: title
+title: Imputación de datos
 author: cabrokiller
 date: '2018-01-03'
-slug: imputacion
 categories:
   - R
-tags: ["r"]
+tags:
+  - r
+  - imputacion
+slug: imputacion
+draft: true
 ---
 
 # Imputación de datos en R
-## Introducción
-En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con los *valores ausentes* (NA's).
 
-Una alternativa es *eliminar* los NA's, pero esto conlleva al menos dos problemas. 
- 1. Por una parte puede distintas el número de casos lo que se traduce en una disminución de la potencia del estudio. 
- 2. Otro problema importante es que podemos caer en un riesgo de selección si la falta de datos tiene relación con alguna de las vainas relevantes. 
+## Intro
+
+Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema... Faltan datos. Casos incompletos, escalas sin pasar, *dropouts*, o el que el desgraciado intertno asignado a pasar los datos era un poco vago... En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos *valores ausentes* (NA's).
+
+Una alternativa es *eliminar* los NA's. Ya está!, fuera con todos los casos incompletos, pero esto tiene dos proeblmas. 
+ 1. A menos número de casos disminuye la potencia del estudio, y esto no es bueno, no?
+ 2. Hay un sesgo de selección si es que la falta de datos tiene relación con alguna de las variables relevantes. 
+
+Pues y que diablos hacemos entonces? pues podemos *imputar* los datos que faltan.
+
+## Explorar NA
+El primer paso como en cualquier trabajo de análisis de datos decente, implica un *análisis exploratorio* de los NA. En R esto esto se cosigue fácil y de manera gráfica con a librería `VIM`.
+
+```{r}
+# cargamos las librerías necesarias
+pacman::p_load(tidyverse, VIM, lattice, missForest, mice)
+
+set.seed(41)
+# creamos un patrón aleatório de NA
+my_data <- iris %>%
+    prodNA(noNA = 0.08)
+
+my_data %>%
+    aggr(col=mdc(1:2), numbers=F, sortVars=T,
+         cex.axis=.56, gap=3, only.miss = F, combined = F,
+         ylab=c("Proportion of missingness","Missingness Pattern"))
+
+```
+
+
+
+
+
+
+## Métodos de imputación de datos
+Una primeraalternbativa, la de *toda la vida* es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que *si* tenemos. ¿Ventajas? Facil de hacer.  ¿Problema? hombre... si... estamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.
+
+
+
 
 Otras alternativas comúnmente utilizadas son las de reemplazar los NA's por algún estadístico de tendencia central (media, mediana o moda para variables categoriales) esto solventa en parte los problemas, pero agregamos muchos casos con la media a una muestra, estamos distinto su variabilidad.
 
 De aquí a que existan diferentes alternativas para lidiar con este problema.
 
-## Exploración de NA's
-Un primer paso como en cualquier trabajo de análisis de datos implica un *análisis exploratorio* de los NA para
 
 ### Frecuencia de NA
 En primer lugar se debe establecer la frecuencia de NA por *casos* y *variables* y definir un nivel de tolerancia para la imputación de datos. Si bien no hay (o yo no sé) de un estándar, se suele considerar que para una correcta imputación, el porcentaje de NA debe ser menor de un 10 %.
