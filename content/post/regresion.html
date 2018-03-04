@@ -16,14 +16,15 @@ draft: true
 <p>Primero y antes de ponerse a buscar esa maldita <em>p</em> (<a href="http://freakonometrics.hypotheses.org/19817">p-hacking</a> le llaman los americanos), y como siempre en cualquier análisis de datos decente, vamos a <strong>mirar</strong> los malditos datos. Lo mas facilito es hacer un <em>scatter-plot</em>, que permite ver relaciones entre dos (o mas) variables.</p>
 <p>Como iba a ser, nos interesa el <strong>precio</strong> y si tiene una relación con algunas de las otras variables. Miramos la relacion con los kilates (<em>carat</em>) y con el largo (<em>x</em>), y porque somos chulos, le agregamos la línea de regresión lineal a ver si se ajusta.</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages ------------------------------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
-<pre><code>## v ggplot2 2.2.1     v purrr   0.2.4
-## v tibble  1.4.1     v dplyr   0.7.4
-## v tidyr   0.7.2     v stringr 1.2.0
-## v readr   1.1.1     v forcats 0.2.0</code></pre>
-<pre><code>## -- Conflicts ---------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr</code></pre>
+<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
+<pre><code>## filter(): dplyr, stats
+## lag():    dplyr, stats</code></pre>
 <pre class="r"><code>diamonds %&gt;%
    ggplot(aes(carat, price)) +
    geom_point(alpha = .05) +

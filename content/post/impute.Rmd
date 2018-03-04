@@ -31,27 +31,41 @@ El primer paso como en cualquier trabajo de análisis de datos decente, implica 
 pacman::p_load(tidyverse, VIM, lattice, missForest, mice)
 
 set.seed(41)
-# creamos un patrón aleatório de NA
-my_data <- iris %>%
-    prodNA(noNA = 0.08)
+# creamos un patrón aleatório de NA 
+mis_datos <-
+   diamonds %>%
+   sample_n(500) %>%
+   prodNA(noNA = 0.08)
 
-my_data %>%
+mis_datos %>%
     aggr(col=mdc(1:2), numbers=F, sortVars=T,
-         cex.axis=.56, gap=3, only.miss = F, combined = F,
+         cex.axis=.8, gap=3, only.miss = F, combined = F,
          ylab=c("Proportion of missingness","Missingness Pattern"))
 
 ```
 
-
-
-
+La funcion `VIM::aggr` permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan. En general se pueden establecer tres tipos de patrones de [valores ausentes:](https://en.wikipedia.org/wiki/Missing_data#Missing_at_random)
+ 1. NA totalmente aleatorio ("missing completely at random, o MCAR") en el que no hay un patrón establecido. El evento por el que hay un valor ausente es independiente de las variables observadas u otros parámetros de interés. Como sospechais es el patrón menos habitual... 
+ 
+ 2. NA aleatorio ("missing at random, o MAR"), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la iformación faltante con los datos existentes, es decir, en la que se puede hacer una estimacion coheerntes de los datos faltantes. 
+ 
+ 3. NA no aleatorio ("missing not at random o MNAR), en el que hay una relacion directa entre el motivo de la ausencia de datos y su propio valor. 
 
 
 ## Métodos de imputación de datos
-Una primeraalternbativa, la de *toda la vida* es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que *si* tenemos. ¿Ventajas? Facil de hacer.  ¿Problema? hombre... si... estamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.
+## tenedencia central
+Una primera alternbativa, la de *toda la vida*, es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que *si* tenemos. ¿Ventajas? Facil de hacer.  ¿Problema? stamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.
 
+```{r}
+calc_moda <- function(x) {
+   z <- table(as.vector(x))
+   names(z)[z == max(z)]
+}
 
-
+mis_datos %>%
+   mutate(carat = ifelse(is.na(carat), mean(carat, na.rm=T), carat),
+          cut = if_else(is.na(cut), calc_moda(cut), "cut"))
+```
 
 Otras alternativas comúnmente utilizadas son las de reemplazar los NA's por algún estadístico de tendencia central (media, mediana o moda para variables categoriales) esto solventa en parte los problemas, pero agregamos muchos casos con la media a una muestra, estamos distinto su variabilidad.
 
