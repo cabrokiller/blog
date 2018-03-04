@@ -34,7 +34,7 @@ set.seed(41)
 # creamos un patrón aleatório de NA 
 mis_datos <-
    diamonds %>%
-   sample_n(500) %>%
+   sample_n(100) %>%
    prodNA(noNA = 0.08)
 
 mis_datos %>%
@@ -53,7 +53,7 @@ La funcion `VIM::aggr` permite tener una representación gráfica de los NA y pe
 
 
 ## Métodos de imputación de datos
-## tenedencia central
+### tenedencia central
 Una primera alternbativa, la de *toda la vida*, es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que *si* tenemos. ¿Ventajas? Facil de hacer.  ¿Problema? stamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.
 
 ```{r}
@@ -62,25 +62,87 @@ calc_moda <- function(x) {
    names(z)[z == max(z)]
 }
 
-mis_datos %>%
-   mutate(carat = ifelse(is.na(carat), mean(carat, na.rm=T), carat),
-          cut = if_else(is.na(cut), calc_moda(cut), "cut"))
+imp_media <-
+   mis_datos %>%
+# Media para variables numéricas
+   mutate_at(
+      vars(carat, depth:z),
+      funs(ifelse(is.na(.), mean(., na.rm = T), .))) %>%
+# Moda para variables categóricas
+   mutate_at(
+      vars(cut:clarity),
+      funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))
 ```
 
-Otras alternativas comúnmente utilizadas son las de reemplazar los NA's por algún estadístico de tendencia central (media, mediana o moda para variables categoriales) esto solventa en parte los problemas, pero agregamos muchos casos con la media a una muestra, estamos distinto su variabilidad.
+#### check
+Con los datos imputados podemos ver cuanto se ajusta nuestro *invento* con la base original
+```{r warning=FALSE}
+mis_datos$.imp <- "original"
+imp_media$.imp <- "imputado"
 
-De aquí a que existan diferentes alternativas para lidiar con este problema.
+imp_media %>%
+   rbind(mis_datos) %>%
+   select(carat, depth, price, z, .imp) %>%
+   gather(key, value, -.imp) %>%
+   ggplot(aes(x = value, color = .imp))+
+   geom_density(size=0.8) +
+   facet_wrap(~ key, scales = "free") +
+   scale_color_brewer(type = "qual", palette = 6, direction = 1) +
+   theme_minimal() + labs(title="Imputación con media aritmética - variables numéricas")
+
+imp_media %>%
+   rbind(mis_datos) %>%
+   select(color, cut, .imp) %>%
+   gather(key, value, -.imp) %>%
+   ggplot(aes(x = value, fill = .imp))+
+   geom_bar(alpha = 0.8, position = position_dodge()) +
+   facet_wrap(~ key, scales = "free") +
+   scale_fill_brewer(type = "qual", palette = 6, direction = 1) +
+   theme_minimal() + labs(title="Imputación con moda - variables categóricas")
+```
+
+Es facilmnte apreciable como tqnto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original. 
+
+### Imputación multiple
+una de las metodologias mas utilizadas para la obtencion de una uestra imputada mas *correcta* es la que utliza tecnicas de imputcoin multiple, es decir imputar mas de una base de datos. Esto permite utlizar las *n* bases imputadas para hacer *n* modelos, que posteriormente se poolean (lo siento, no se como diablos se traduce eso...) con la ventaja de que el model final da cuenta de las pequeñas diferencias de las bases imputadas. 
+LA mayoría de las librería permite calibrar bastante la generacion de las bases, además de la metodología para la imputacion de los valores. Uno de los paquetes mejor documentados es el [mice](http://stefvanbuuren.github.io/mice/)
+
+El proceso es relativamente facil y esta muy bien docuemntado en las viñetas. El método de imutación por deficnicion es el *predictive mean matching* para variables numéricas, *logistic imputation* para categoriales binarias y *polytomous regression imputation* para categoriales de mas de dos factores. 
+
+```{r}
+pacman::p_load(mice)
+imp_mice <- mice(select(mis_datos, -.imp))
+
+imp_mice %>%
+   complete(action = "long") %>%
+   select(-.id) %>%
+   rbind(mis_datos) %>%
+   select(carat, depth, price, z, .imp) %>%
+   gather(key, value, -.imp) %>%
+   ggplot(aes(x = value, color = .imp))+
+   geom_density(size = 0.8, alpha = .8) +
+   facet_wrap(~ key, scales = "free") +
+   scale_color_brewer(type = "seq", palette = 8) +
+   theme_minimal() + labs(title="Imputación con media aritmética - variables numéricas")
+
+imp_mice %>%
+   complete(action = "long") %>%
+   select(-.id) %>%
+   select(color, cut, .imp) %>%
+   gather(key, value, -.imp) %>%
+   ggplot(aes(x = value, fill = .imp))+
+   geom_bar(alpha = 0.8, position = position_dodge()) +
+   facet_wrap(~ key, scales = "free") +
+   scale_fill_brewer(type = "seq", palette =8) +
+   theme_minimal() + labs(title="Imputación con moda - variables categóricas")
+```
+
+Se ajusta mejor no? y eso que n ofue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete *mice* tiene un monton de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las viñetas, que están super bien explicadas. *mice* ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest. 
+
+*mice* ademas tiene *metodos* para una serie de modelos de *r base* como las funiones que permiten utlizar la *clase* mids que son los objetos de imputqciones multiple que esxupe el *r*
+
+## Para PCA
+Un problema de las imputaciones multiples es que depeneindo del trato que daremos a los datos, 
 
 
-### Frecuencia de NA
-En primer lugar se debe establecer la frecuencia de NA por *casos* y *variables* y definir un nivel de tolerancia para la imputación de datos. Si bien no hay (o yo no sé) de un estándar, se suele considerar que para una correcta imputación, el porcentaje de NA debe ser menor de un 10 %.
 
-### Patrón de NA
-Luego es necesario explorar el patrón de NA y valorar si es que los NA se rigen por un patrón aleatorio ("missing at random" o MAR) o por un patrón no aleatorio ("missing not at random" o MNAR). Una buena aproximación a eso es él examen visual del pistón de NA, que resulta fácil con el paquete VIM.
-
-En general, los diferentes métodos de impresión pueden lidiar con variables MAR. Las variables MINAR conllevan más problemas en cuanto a la imputación, y muchas veces es necesario hacer un análisis de sensibilidad posterior para valorar la imputación.
-
-### Método de imputación
-Una vez que hemos establecido la necesidad de imputación, toca seleccionar que metodología utilizaremos. El método en cuestión va a depender en parte de:
- - El tipo de variable (numérica, categorial, binaria...)
- - El tipo de modelo que aplicaremos (regresión lineal, PCA...)

@@ -63,48 +63,57 @@ mis_datos %&gt;%
 </div>
 <div id="metodos-de-imputacion-de-datos" class="section level2">
 <h2>Métodos de imputación de datos</h2>
-</div>
-<div id="tenedencia-central" class="section level2">
-<h2>tenedencia central</h2>
+<div id="tenedencia-central" class="section level3">
+<h3>tenedencia central</h3>
 <p>Una primera alternbativa, la de <em>toda la vida</em>, es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que <em>si</em> tenemos. ¿Ventajas? Facil de hacer. ¿Problema? stamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.</p>
 <pre class="r"><code>calc_moda &lt;- function(x) {
    z &lt;- table(as.vector(x))
    names(z)[z == max(z)]
 }
 
-mis_datos %&gt;%
-   mutate(carat = ifelse(is.na(carat), mean(carat, na.rm=T), carat),
-          cut = if_else(is.na(cut), calc_moda(cut), &quot;cut&quot;))</code></pre>
-<pre><code>## # A tibble: 500 x 10
-##    carat cut   color clarity depth table price     x     y     z
-##    &lt;dbl&gt; &lt;chr&gt; &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 1.09  cut   G     SI1      62.2  56.0  5022  6.60  6.55  4.09
-##  2 0.800 cut   I     &lt;NA&gt;     60.9  60.0    NA  6.01  5.95  3.64
-##  3 0.320 cut   D     SI1      62.0  57.0   756  4.40  4.37  2.72
-##  4 1.06  cut   &lt;NA&gt;  SI2      61.8  57.0  4270  6.57  6.60  4.07
-##  5 0.550 cut   H     &lt;NA&gt;     61.6  55.0  1668  5.30  5.31  3.26
-##  6 0.720 cut   D     SI2      60.5  60.0  2429  5.82  5.72  3.49
-##  7 0.700 cut   E     &lt;NA&gt;     64.4  58.0  1998  5.58  5.51  3.57
-##  8 0.300 cut   G     VVS2     62.1  55.0   665  4.32 NA     2.69
-##  9 0.500 cut   E     VS2      62.1  55.0  1554  5.11  5.13  3.18
-## 10 0.410 cut   G     SI1      62.7  58.0   923  4.74  4.70  2.96
-## # ... with 490 more rows</code></pre>
-<p>Otras alternativas comúnmente utilizadas son las de reemplazar los NA’s por algún estadístico de tendencia central (media, mediana o moda para variables categoriales) esto solventa en parte los problemas, pero agregamos muchos casos con la media a una muestra, estamos distinto su variabilidad.</p>
-<p>De aquí a que existan diferentes alternativas para lidiar con este problema.</p>
-<div id="frecuencia-de-na" class="section level3">
-<h3>Frecuencia de NA</h3>
-<p>En primer lugar se debe establecer la frecuencia de NA por <em>casos</em> y <em>variables</em> y definir un nivel de tolerancia para la imputación de datos. Si bien no hay (o yo no sé) de un estándar, se suele considerar que para una correcta imputación, el porcentaje de NA debe ser menor de un 10 %.</p>
+datos_imp &lt;- 
+   mis_datos %&gt;%
+# Media para variables numéricas
+   mutate_at(
+      vars(carat, depth:z),
+      funs(ifelse(is.na(.), mean(., na.rm = T), .))) %&gt;%
+# Moda para variables categóricas
+   mutate_at(
+      vars(cut:clarity),
+      funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))</code></pre>
+<div id="check" class="section level4">
+<h4>check</h4>
+<p>Con los datos imputados podemos ver cuanto se ajusta nuestro <em>invento</em> con la base original</p>
+<pre class="r"><code>mis_datos$tipo &lt;- &quot;original&quot;
+datos_imp$tipo &lt;- &quot;imputado&quot;
+
+datos_imp %&gt;%
+   rbind(mis_datos) %&gt;%
+   select(carat, depth, price, x, tipo) %&gt;%
+   gather(key, value, -tipo) %&gt;%
+   ggplot(aes(x = value, fill = tipo))+
+   geom_density(alpha = 0.8) +
+   facet_wrap(~ key, scales = &quot;free&quot;) +
+   scale_fill_brewer(type = &quot;qual&quot;, palette = 4, direction = 1) +
+   theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>datos_imp %&gt;%
+   rbind(mis_datos) %&gt;%
+   select(color, cut, tipo) %&gt;%
+   gather(key, value, -tipo) %&gt;%
+   ggplot(aes(x = value, fill = tipo))+
+   geom_bar(alpha = 0.8, position = position_dodge()) +
+   facet_wrap(~ key, scales = &quot;free&quot;) +
+   scale_fill_brewer(type = &quot;qual&quot;, palette = 4, direction = 1) +
+   theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-3-2.png" width="672" /></p>
+<p>Es facilmnte apreciable como tqnto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
 </div>
-<div id="patron-de-na" class="section level3">
-<h3>Patrón de NA</h3>
-<p>Luego es necesario explorar el patrón de NA y valorar si es que los NA se rigen por un patrón aleatorio (“missing at random” o MAR) o por un patrón no aleatorio (“missing not at random” o MNAR). Una buena aproximación a eso es él examen visual del pistón de NA, que resulta fácil con el paquete VIM.</p>
-<p>En general, los diferentes métodos de impresión pueden lidiar con variables MAR. Las variables MINAR conllevan más problemas en cuanto a la imputación, y muchas veces es necesario hacer un análisis de sensibilidad posterior para valorar la imputación.</p>
 </div>
-<div id="metodo-de-imputacion" class="section level3">
-<h3>Método de imputación</h3>
-<p>Una vez que hemos establecido la necesidad de imputación, toca seleccionar que metodología utilizaremos. El método en cuestión va a depender en parte de:
-- El tipo de variable (numérica, categorial, binaria…)
-- El tipo de modelo que aplicaremos (regresión lineal, PCA…)</p>
+<div id="imputacion-multiple" class="section level3">
+<h3>Imputación multiple</h3>
+<p>una de las metodologias mas utilizadas para la obtencion de una uestra imputada mas <em>correcta</em> es la que utliza tecnicas de imputcoin multiple, es decir imputar mas de una base de datos. Esto permite utlizar las <em>n</em> bases imputadas para hacer <em>n</em> modelos, que posteriormente se poolean (lo siento, no se como diablos se traduce eso…) con la ventaja de que el model final da cuenta de las pequeñas diferencias de las bases imputadas.
+LA mayoría de las librería permite calibrar bastante la generacion de las bases, además de la metodología para la imputacion de los valores. Uno de los paquetes mejor documentados es el <a href="http://stefvanbuuren.github.io/mice/">mice</a></p>
 </div>
 </div>
 </div>
