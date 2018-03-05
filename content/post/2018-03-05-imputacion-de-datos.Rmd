@@ -8,6 +8,7 @@ categories:
 tags:
   - Imputación
   - PCA
+draft: true
 ---
 
 # Imputación de datos en R
