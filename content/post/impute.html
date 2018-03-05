@@ -27,33 +27,32 @@ draft: true
 <h2>Explorar NA</h2>
 <p>El primer paso como en cualquier trabajo de análisis de datos decente, implica un <em>análisis exploratorio</em> de los NA. En R esto esto se cosigue fácil y de manera gráfica con a librería <code>VIM</code>.</p>
 <pre class="r"><code># cargamos las librerías necesarias
-pacman::p_load(tidyverse, VIM, lattice, missForest, mice)
-
-set.seed(41)
+pacman::p_load(tidyverse, VIM, lattice, missForest, mice)</code></pre>
+<pre class="r"><code>set.seed(41)
 # creamos un patrón aleatório de NA 
 mis_datos &lt;-
    diamonds %&gt;%
-   sample_n(100) %&gt;%
+   sample_n(200) %&gt;%
    prodNA(noNA = 0.08)
 
 mis_datos %&gt;%
     aggr(col=mdc(1:2), numbers=F, sortVars=T,
          cex.axis=.8, gap=3, only.miss = F, combined = F,
          ylab=c(&quot;Proportion of missingness&quot;,&quot;Missingness Pattern&quot;))</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" /></p>
 <pre><code>## 
 ##  Variables sorted by number of missings: 
 ##  Variable Count
-##     depth  0.13
-##         y  0.13
-##     carat  0.08
-##   clarity  0.08
-##         x  0.08
-##         z  0.08
-##       cut  0.07
-##     table  0.07
-##     price  0.05
-##     color  0.03</code></pre>
+##       cut 0.105
+##     table 0.100
+##         x 0.095
+##         y 0.095
+##     depth 0.075
+##     price 0.075
+##         z 0.075
+##     color 0.065
+##   clarity 0.060
+##     carat 0.055</code></pre>
 <p>La funcion <code>VIM::aggr</code> permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan. En general se pueden establecer tres tipos de patrones de <a href="https://en.wikipedia.org/wiki/Missing_data#Missing_at_random">valores ausentes:</a>
 1. NA totalmente aleatorio (“missing completely at random, o MCAR”) en el que no hay un patrón establecido. El evento por el que hay un valor ausente es independiente de las variables observadas u otros parámetros de interés. Como sospechais es el patrón menos habitual…</p>
 <ol start="2" style="list-style-type: decimal">
@@ -96,7 +95,7 @@ imp_media %&gt;%
    facet_wrap(~ key, scales = &quot;free&quot;) +
    scale_color_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
    theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>imp_media %&gt;%
    rbind(mis_datos) %&gt;%
    select(color, cut, .imp) %&gt;%
@@ -106,7 +105,7 @@ imp_media %&gt;%
    facet_wrap(~ key, scales = &quot;free&quot;) +
    scale_fill_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
    theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-2.png" width="672" /></p>
 <p>Es facilmnte apreciable como tqnto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
 </div>
 </div>
@@ -155,8 +154,8 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
    facet_wrap(~ key, scales = &quot;free&quot;) +
    scale_color_brewer(type = &quot;seq&quot;, palette = 8) +
    theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
-<pre><code>## Warning: Removed 34 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 56 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>imp_mice %&gt;%
    complete(action = &quot;long&quot;) %&gt;%
    select(-.id) %&gt;%
@@ -169,13 +168,38 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
    theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-2.png" width="672" /></p>
-<p>Se ajusta mejor no? y eso que n ofue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete <em>mice</em> tiene un monton de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las viñetas, que están super bien explicadas. <em>mice</em> ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest.</p>
-<p><em>mice</em> ademas tiene <em>metodos</em> para una serie de modelos de <em>r base</em> como las funiones que permiten utlizar la <em>clase</em> mids que son los objetos de imputqciones multiple que esxupe el <em>r</em></p>
+<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>
+<p>Se ajusta mejor no? y eso que no fue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete <code>mice</code> tiene un montón de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las <a href="https://cran.r-project.org/web/packages/mice/vignettes/resources.html">viñetas</a>, que están super bien explicadas. <code>mice</code> ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest.</p>
+<p><code>mice</code> ademas tiene <em>metodos</em> para una serie de modelos de <em>r base</em> como las funiones que permiten utlizar la <em>clase</em> mids que son los objetos de imputqciones multiple que esxupe el <em>r</em></p>
 </div>
 </div>
 <div id="para-pca" class="section level2">
 <h2>Para PCA</h2>
-<p>Un problema de las imputaciones multiples es que depeneindo del trato que daremos a los datos,</p>
+<p>Un problema de las imputaciones multiples es que depeneindo del trato que daremos a los datos, puede no haber un método estandarizado para lidiar con ellos. Es el caso del análisis de componentes priniciaples (PCA) donde no está muy bien establecida una metodología para lidiar con los NA y donde no hay un método específico de la libreia <code>mice</code>. Una aproximación util es la de utilizar es la librería <a href="http://factominer.free.fr/missMDA/index.html"><code>missMDA</code></a>, un <em>compañero</em> de la excelente librería para PCA <a href="http://factominer.free.fr/index.html"><code>FactoMineR</code></a>.
+<code>missMDA</code> permite la imputación de datos de tal manera de que los valores imputdos no tengan mayor reprecusion en el resultado del PCA utilizando metodos de reduccion del adimensinalidad ( para mas detalles de cómo lo hace, espabilar y mirar la documentación).
+En resumen el metodo se puede aplicar asi:
+1. se calucal el numero de dimensiones a utilizar para la imputacion con la funcion <code>estim_ncpPCA</code>.
+2. se completa la base utilizando el numero de dimensiones calculada con <code>imputePCA</code>.
+3. Se puede revisar de manera gráfica la incerteza de la imputación con la función <code>MIPCA</code>.</p>
+<p>En el siguente ejemplo cambiaremos la base a una que sea mas apropiada para un posterior PCA. utilizamos la base <code>geno</code> del paquete <code>missMDA</code> que contiene infromacion de genotipos y ambiente de cultivo, con NA’s</p>
+<pre class="r"><code>library(missMDA)
+data(geno)
+
+nb&lt;- 
+    geno %&gt;%
+    estim_ncpPCA(ncp.max=10)</code></pre>
+<pre><code>## Warning in impute(X, ncp = ncp, scale = scale, method = method, threshold =
+## threshold, : Stopped after 1000 iterations</code></pre>
+<pre class="r"><code>imp_MDA &lt;-
+    geno %&gt;%
+    imputePCA(ncp = nb$ncp) %&gt;%
+    purrr::pluck(1) %&gt;%
+    as.tibble()
+
+check_MDA &lt;- 
+    geno %&gt;%
+    MIPCA(ncp=nb$ncp, nboot = 100)
+
+plot(check_MDA)</code></pre>
 </div>
 </div>

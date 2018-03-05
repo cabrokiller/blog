@@ -29,12 +29,14 @@ El primer paso como en cualquier trabajo de análisis de datos decente, implica 
 ```{r}
 # cargamos las librerías necesarias
 pacman::p_load(tidyverse, VIM, lattice, missForest, mice)
+```
 
+```{r}
 set.seed(41)
 # creamos un patrón aleatório de NA 
 mis_datos <-
    diamonds %>%
-   sample_n(100) %>%
+   sample_n(200) %>%
    prodNA(noNA = 0.08)
 
 mis_datos %>%
@@ -137,12 +139,40 @@ imp_mice %>%
    theme_minimal() + labs(title="Imputación con moda - variables categóricas")
 ```
 
-Se ajusta mejor no? y eso que n ofue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete *mice* tiene un monton de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las viñetas, que están super bien explicadas. *mice* ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest. 
+Se ajusta mejor no? y eso que no fue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete `mice` tiene un montón de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las [viñetas](https://cran.r-project.org/web/packages/mice/vignettes/resources.html), que están super bien explicadas. `mice` ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest. 
 
-*mice* ademas tiene *metodos* para una serie de modelos de *r base* como las funiones que permiten utlizar la *clase* mids que son los objetos de imputqciones multiple que esxupe el *r*
+`mice` ademas tiene *metodos* para una serie de modelos de *r base* como las funiones que permiten utlizar la *clase* mids que son los objetos de imputqciones multiple que esxupe el *r*
 
 ## Para PCA
-Un problema de las imputaciones multiples es que depeneindo del trato que daremos a los datos, 
+Un problema de las imputaciones multiples es que depeneindo del trato que daremos a los datos, puede no haber un método estandarizado para lidiar con ellos. Es el caso del análisis de componentes priniciaples (PCA) donde no está muy bien establecida una metodología para lidiar con los NA y donde no hay un método específico de la libreia `mice`.  Una aproximación util es la de utilizar es la librería [`missMDA`](http://factominer.free.fr/missMDA/index.html), un *compañero* de la excelente librería para PCA [`FactoMineR`](http://factominer.free.fr/index.html).
+`missMDA` permite la imputación de datos de tal manera de que los valores imputdos no tengan mayor reprecusion en el resultado del PCA utilizando metodos de reduccion del adimensinalidad ( para mas detalles de cómo lo hace, espabilar y mirar la documentación).
+En resumen el metodo se puede aplicar asi:
+ 1. se calucal el numero de dimensiones a utilizar para la imputacion con la funcion `estim_ncpPCA`.
+ 2. se completa la base utilizando el numero de dimensiones calculada con `imputePCA`.
+ 3. Se puede revisar de manera gráfica la incerteza de la imputación con la función `MIPCA`. 
+ 
+ En el siguente ejemplo cambiaremos la base a una que sea mas apropiada para un posterior PCA. utilizamos la base `geno` del paquete `missMDA` que contiene infromacion de genotipos y ambiente de cultivo, con NA's
+
+```{r}
+library(missMDA)
+data(geno)
+
+nb<- 
+    geno %>%
+    estim_ncpPCA(ncp.max=10)
+
+imp_MDA <-
+    geno %>%
+    imputePCA(ncp = nb$ncp) %>%
+    purrr::pluck(1) %>%
+    as.tibble()
+
+check_MDA <- 
+    geno %>%
+    MIPCA(ncp=nb$ncp, nboot = 100)
+
+plot(check_MDA)
+```
 
 
 
