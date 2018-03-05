@@ -67,20 +67,20 @@ mis_datos %&gt;%
 <h3>tenedencia central</h3>
 <p>Una primera alternbativa, la de <em>toda la vida</em>, es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que <em>si</em> tenemos. ¿Ventajas? Facil de hacer. ¿Problema? stamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.</p>
 <pre class="r"><code>calc_moda &lt;- function(x) {
-   z &lt;- table(as.vector(x))
-   names(z)[z == max(z)]
+    z &lt;- table(as.vector(x))
+    names(z)[z == max(z)]
 }
 
 imp_media &lt;-
-   mis_datos %&gt;%
+    mis_datos %&gt;%
 # Media para variables numéricas
-   mutate_at(
-      vars(carat, depth:z),
-      funs(ifelse(is.na(.), mean(., na.rm = T), .))) %&gt;%
+    mutate_at(
+       vars(carat, depth:z),
+       funs(ifelse(is.na(.), mean(., na.rm = T), .))) %&gt;%
 # Moda para variables categóricas
-   mutate_at(
-      vars(cut:clarity),
-      funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))</code></pre>
+    mutate_at(
+       vars(cut:clarity),
+       funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))</code></pre>
 <div id="check" class="section level4">
 <h4>check</h4>
 <p>Con los datos imputados podemos ver cuanto se ajusta nuestro <em>invento</em> con la base original</p>
@@ -88,24 +88,25 @@ imp_media &lt;-
 imp_media$.imp &lt;- &quot;imputado&quot;
 
 imp_media %&gt;%
-   rbind(mis_datos) %&gt;%
-   select(carat, depth, price, z, .imp) %&gt;%
-   gather(key, value, -.imp) %&gt;%
-   ggplot(aes(x = value, color = .imp))+
-   geom_density(size=0.8) +
-   facet_wrap(~ key, scales = &quot;free&quot;) +
-   scale_color_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
-   theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
+    rbind(mis_datos) %&gt;%
+    select(carat, depth, price, z, .imp) %&gt;%
+    gather(key, value, -.imp) %&gt;%
+    ggplot(aes(x = value, color = .imp))+
+    geom_density(size=0.8) +
+    facet_wrap(~ key, scales = &quot;free&quot;) +
+    scale_color_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
+    theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>imp_media %&gt;%
-   rbind(mis_datos) %&gt;%
-   select(color, cut, .imp) %&gt;%
-   gather(key, value, -.imp) %&gt;%
-   ggplot(aes(x = value, fill = .imp))+
-   geom_bar(alpha = 0.8, position = position_dodge()) +
-   facet_wrap(~ key, scales = &quot;free&quot;) +
-   scale_fill_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
-   theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
+    rbind(mis_datos) %&gt;%
+    select(color, cut, .imp) %&gt;%
+    gather(key, value, -.imp) %&gt;%
+    na.omit() %&gt;%
+    ggplot(aes(x = value, fill = .imp))+
+    geom_bar(alpha = 0.8, position = position_dodge()) +
+    facet_wrap(~ key, scales = &quot;free&quot;) +
+    scale_fill_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
+    theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-2.png" width="672" /></p>
 <p>Es facilmnte apreciable como tqnto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
 </div>
@@ -145,28 +146,28 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
 ##   5   4  carat  cut  color  clarity  depth  table  price  x  y  z
 ##   5   5  carat  cut  color  clarity  depth  table  price  x  y  z</code></pre>
 <pre class="r"><code>imp_mice %&gt;%
-   complete(action = &quot;long&quot;) %&gt;%
-   select(-.id) %&gt;%
-   rbind(mis_datos) %&gt;%
-   select(carat, depth, price, z, .imp) %&gt;%
-   gather(key, value, -.imp) %&gt;%
-   ggplot(aes(x = value, color = .imp))+
-   geom_density(size = 0.8, alpha = .8) +
-   facet_wrap(~ key, scales = &quot;free&quot;) +
-   scale_color_brewer(type = &quot;seq&quot;, palette = 8) +
-   theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
+    complete(action = &quot;long&quot;) %&gt;%
+    select(-.id) %&gt;%
+    rbind(mis_datos) %&gt;%
+    select(carat, depth, price, z, .imp) %&gt;%
+    gather(key, value, -.imp) %&gt;%
+    ggplot(aes(x = value, color = .imp))+
+    geom_density(size = 0.8, alpha = .8) +
+    facet_wrap(~ key, scales = &quot;free&quot;) +
+    scale_color_brewer(type = &quot;seq&quot;, palette = 8) +
+    theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
 <pre><code>## Warning: Removed 56 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>imp_mice %&gt;%
-   complete(action = &quot;long&quot;) %&gt;%
-   select(-.id) %&gt;%
-   select(color, cut, .imp) %&gt;%
-   gather(key, value, -.imp) %&gt;%
-   ggplot(aes(x = value, fill = .imp))+
-   geom_bar(alpha = 0.8, position = position_dodge()) +
-   facet_wrap(~ key, scales = &quot;free&quot;) +
-   scale_fill_brewer(type = &quot;seq&quot;, palette =8) +
-   theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
+    complete(action = &quot;long&quot;) %&gt;%
+    select(-.id) %&gt;%
+    select(color, cut, .imp) %&gt;%
+    gather(key, value, -.imp) %&gt;%
+    ggplot(aes(x = value, fill = .imp))+
+    geom_bar(alpha = 0.8, position = position_dodge()) +
+    facet_wrap(~ key, scales = &quot;free&quot;) +
+    scale_fill_brewer(type = &quot;seq&quot;, palette =8) +
+    theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>

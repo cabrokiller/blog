@@ -61,20 +61,20 @@ Una primera alternbativa, la de *toda la vida*, es imputar con algún estadísti
 
 ```{r}
 calc_moda <- function(x) {
-   z <- table(as.vector(x))
-   names(z)[z == max(z)]
+    z <- table(as.vector(x))
+    names(z)[z == max(z)]
 }
 
 imp_media <-
-   mis_datos %>%
+    mis_datos %>%
 # Media para variables numéricas
-   mutate_at(
-      vars(carat, depth:z),
-      funs(ifelse(is.na(.), mean(., na.rm = T), .))) %>%
+    mutate_at(
+       vars(carat, depth:z),
+       funs(ifelse(is.na(.), mean(., na.rm = T), .))) %>%
 # Moda para variables categóricas
-   mutate_at(
-      vars(cut:clarity),
-      funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))
+    mutate_at(
+       vars(cut:clarity),
+       funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))
 ```
 
 #### check
@@ -84,24 +84,25 @@ mis_datos$.imp <- "original"
 imp_media$.imp <- "imputado"
 
 imp_media %>%
-   rbind(mis_datos) %>%
-   select(carat, depth, price, z, .imp) %>%
-   gather(key, value, -.imp) %>%
-   ggplot(aes(x = value, color = .imp))+
-   geom_density(size=0.8) +
-   facet_wrap(~ key, scales = "free") +
-   scale_color_brewer(type = "qual", palette = 6, direction = 1) +
-   theme_minimal() + labs(title="Imputación con media aritmética - variables numéricas")
+    rbind(mis_datos) %>%
+    select(carat, depth, price, z, .imp) %>%
+    gather(key, value, -.imp) %>%
+    ggplot(aes(x = value, color = .imp))+
+    geom_density(size=0.8) +
+    facet_wrap(~ key, scales = "free") +
+    scale_color_brewer(type = "qual", palette = 6, direction = 1) +
+    theme_minimal() + labs(title="Imputación con media aritmética - variables numéricas")
 
 imp_media %>%
-   rbind(mis_datos) %>%
-   select(color, cut, .imp) %>%
-   gather(key, value, -.imp) %>%
-   ggplot(aes(x = value, fill = .imp))+
-   geom_bar(alpha = 0.8, position = position_dodge()) +
-   facet_wrap(~ key, scales = "free") +
-   scale_fill_brewer(type = "qual", palette = 6, direction = 1) +
-   theme_minimal() + labs(title="Imputación con moda - variables categóricas")
+    rbind(mis_datos) %>%
+    select(color, cut, .imp) %>%
+    gather(key, value, -.imp) %>%
+    na.omit() %>%
+    ggplot(aes(x = value, fill = .imp))+
+    geom_bar(alpha = 0.8, position = position_dodge()) +
+    facet_wrap(~ key, scales = "free") +
+    scale_fill_brewer(type = "qual", palette = 6, direction = 1) +
+    theme_minimal() + labs(title="Imputación con moda - variables categóricas")
 ```
 
 Es facilmnte apreciable como tqnto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original. 
@@ -117,27 +118,27 @@ pacman::p_load(mice)
 imp_mice <- mice(select(mis_datos, -.imp))
 
 imp_mice %>%
-   complete(action = "long") %>%
-   select(-.id) %>%
-   rbind(mis_datos) %>%
-   select(carat, depth, price, z, .imp) %>%
-   gather(key, value, -.imp) %>%
-   ggplot(aes(x = value, color = .imp))+
-   geom_density(size = 0.8, alpha = .8) +
-   facet_wrap(~ key, scales = "free") +
-   scale_color_brewer(type = "seq", palette = 8) +
-   theme_minimal() + labs(title="Imputación con media aritmética - variables numéricas")
+    complete(action = "long") %>%
+    select(-.id) %>%
+    rbind(mis_datos) %>%
+    select(carat, depth, price, z, .imp) %>%
+    gather(key, value, -.imp) %>%
+    ggplot(aes(x = value, color = .imp))+
+    geom_density(size = 0.8, alpha = .8) +
+    facet_wrap(~ key, scales = "free") +
+    scale_color_brewer(type = "seq", palette = 8) +
+    theme_minimal() + labs(title="Imputación con media aritmética - variables numéricas")
 
 imp_mice %>%
-   complete(action = "long") %>%
-   select(-.id) %>%
-   select(color, cut, .imp) %>%
-   gather(key, value, -.imp) %>%
-   ggplot(aes(x = value, fill = .imp))+
-   geom_bar(alpha = 0.8, position = position_dodge()) +
-   facet_wrap(~ key, scales = "free") +
-   scale_fill_brewer(type = "seq", palette =8) +
-   theme_minimal() + labs(title="Imputación con moda - variables categóricas")
+    complete(action = "long") %>%
+    select(-.id) %>%
+    select(color, cut, .imp) %>%
+    gather(key, value, -.imp) %>%
+    ggplot(aes(x = value, fill = .imp))+
+    geom_bar(alpha = 0.8, position = position_dodge()) +
+    facet_wrap(~ key, scales = "free") +
+    scale_fill_brewer(type = "seq", palette =8) +
+    theme_minimal() + labs(title="Imputación con moda - variables categóricas")
 ```
 
 Se ajusta mejor no? y eso que no fue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete `mice` tiene un montón de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las [viñetas](https://cran.r-project.org/web/packages/mice/vignettes/resources.html), que están super bien explicadas. `mice` ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest. 
