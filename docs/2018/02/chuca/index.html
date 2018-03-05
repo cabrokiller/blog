@@ -258,7 +258,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="Imputación de datos">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -344,7 +344,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2018/01/imputacion/" data-tooltip="Imputación de datos">
               
                   <span class="hide-xs hide-sm text-small icon-mr">ANTERIOR</span>
                   <i class="fa fa-angle-right"></i>
@@ -483,6 +483,23 @@
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://cabrokiller.github.io/blog/2018/01/imputacion/">
+                <h3 class="media-heading">Imputación de datos</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Imputación de datos en R Intro Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos valores ausentes (NA’s).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -490,7 +507,7 @@
          data-message-zero="no se encontraron artículos"
          data-message-one="1 artículo encontrado"
          data-message-other="{n} artículos encontrados">
-         1 posts found
+         2 posts found
       </p>
     </div>
   </div>
@@ -546,7 +563,7 @@ $(document).ready(function() {
             return;
           }
           var d = document, s = d.createElement('script');
-          var disqus_shortname = 'r-con-r.disqus.com';
+          var disqus_shortname = 'r-con-r';
           s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
           s.setAttribute('data-timestamp', +new Date());

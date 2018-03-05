@@ -20,5 +20,14 @@
       <description>en construccion</description>
     </item>
     
+    <item>
+      <title>Imputación de datos</title>
+      <link>https://cabrokiller.github.io/blog/2018/01/imputacion/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://cabrokiller.github.io/blog/2018/01/imputacion/</guid>
+      <description>Imputación de datos en R Intro Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos valores ausentes (NA’s).</description>
+    </item>
+    
   </channel>
 </rss>
