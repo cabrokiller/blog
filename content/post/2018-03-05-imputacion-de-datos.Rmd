@@ -8,22 +8,34 @@ categories:
 tags:
   - Imputación
   - PCA
-draft: false
+draft: true
 ---
 
 # Imputación de datos en R
 
 ## Introducción
 
-Estás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema... Faltan datos. Casos incompletos, escalas sin pasar, *dropouts*, o que el desgraciado interno asignado a pasar los datos era un poco vago... Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga *algo* con los **valores ausentes** (NA’s).  
+Estás preparado para aplicar todo el conocimiento para estrujar esa base,
+pero te encuentras con un problema... Faltan datos. Casos incompletos, escalas
+sin pasar, *dropouts*, o que el pobre desgraciado del interno asignado para
+pasar los datos al ordenador era un poco vago... Pues en ciencias y sobretodo
+en las ciencias de la salud, lo más común encontrar bases de datos incompletas.
+Por otra parte, la mayoría de los análisis estadísticos requieren que *casos*
+completos por lo que hay que hacer *algo* con los **valores ausentes** (NA’s).  
 
-Una alternativa fácil es *eliminar* los NA's. Ya está!, fuera con todos los casos incompletos  palante... pero esto tiene dos problemas.
- 1. A menos número de casos disminuye la potencia del estudio, y esto no es bueno, no?
- 2. Hay un sesgo de selección si es que la falta de datos tiene relación con alguna de las variables relevantes.
+Una alternativa fácil es *eliminar* los NA's. Ya está!, fuera con todos los
+casos incompletos y palante... pero esto tiene dos problemas.
+ 1. A menos número de casos disminuye la potencia del estudio,
+    y esto no es bueno, no?
+ 2. Hay un sesgo de selección si es que la falta de datos tiene relación con
+    alguna de las variables relevantes (dependientes o indepes)
 
-Pues ¿qué diablos hacemos entonces? Podemos *imputar* los datos que faltan, que no es un insulto… A ver si nos aclaramos de cómo se hace en un proyecto para *imputar* los datos faltantes. 
 
-## Explorar NA
+Pues ¿qué diablos hacemos entonces? Podemos *imputar* los datos que faltan,
+que no es un insulto…  a continuación intentare dar alguna pincelada de técnicas
+para *imputar* los datos faltantes en una base..
+
+## Análisis exploratorio de NA's
 El primer paso como en cualquier trabajo de análisis de datos decente, implica un *análisis exploratorio* de los NA. En R esto esto se consigue fácil y de manera gráfica con a librería `VIM`.
 
 ```{r}
@@ -46,16 +58,21 @@ mis_datos %>%
 
 ```
 
-La función `VIM::aggr` permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan. 
+La función `VIM::aggr` permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan.
 
+### Tipos de NA's
 Se pueden establecer tres tipos de patrones de [valores ausentes:](https://en.wikipedia.org/wiki/Missing_data#Missing_at_random)
  1. NA totalmente aleatorio ("missing completely at random, o MCAR") en el que no hay un patrón establecido. El evento por el que hay un valor ausente es independiente de las variables observadas u otros parámetros de interés. Como sospechais es el patrón menos habitual...
- 
+
  2. NA aleatorio ("missing at random, o MAR"), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la información faltante con los datos existentes, es decir, en la que se puede hacer una estimación coherentes de los datos faltantes.
- 
+
  3. NA no aleatorio ("missing not at random o MNAR), en el que hay una relación directa entre el motivo de la ausencia de datos y su propio valor.
 
-Cualquier técnica de imputación requiere de que los NA’s sigan un patrón MCAR o MAR. En casos en los que el patrón de NA’s siga un patrón de MNAR, hace necesario que posteriormente se deba hacer un [análisis de sensibilidad](https://en.wikipedia.org/wiki/Sensitivity_analysis) para valorar la influencia de la imputación en el grado de incertidumbre del modelo generado. Si bien no es física cuántica, se lo parece, y si queréis adentraros en el tema hay una [viñeta](https://gerkovink.github.io/miceVignettes/Sensitivity_analysis/Sensitivity_analysis.html) del paquete `mice` que trata de ello. 
+### Cantidad de NA's
+ % de NA
+
+
+Cualquier técnica de imputación requiere de que los NA’s sigan un patrón MCAR o MAR. En casos en los que el patrón de NA’s siga un patrón de MNAR, hace necesario que posteriormente se deba hacer un [análisis de sensibilidad](https://en.wikipedia.org/wiki/Sensitivity_analysis) para valorar la influencia de la imputación en el grado de incertidumbre del modelo generado. Si bien no es física cuántica, se lo parece, y si queréis adentraros en el tema hay una [viñeta](https://gerkovink.github.io/miceVignettes/Sensitivity_analysis/Sensitivity_analysis.html) del paquete `mice` que trata de ello.
 
 ## Métodos de imputación de datos
 ### Tendencia central
@@ -117,7 +134,7 @@ Una de las metodologías más utilizadas para la obtención de una muestra imput
 La mayoría de las librerías permiten calibrar bastante la generación de la imputación, además de la metodología utilizada. Uno de los paquetes mejor documentados y *de moda* es el [mice](http://stefvanbuuren.github.io/mice/)
 
 El proceso es relativamente fácil y está muy bien documentado en las viñetas. El método de imputación por definición es el *predictive mean matching* para variables numéricas, *logistic imputation* para categoriales binarias y *polytomous regression imputation* para categoriales de más de dos factores. Para la utilización se usa la función `mice` que genera un objetos `mids` con las *n* bases imputadas. La librería trae además varios *metodos* para utilizar directamente los objetos `mids` en modelos estadísticos como regresiones lineales.  
-Funciona mejor o no? Pues lo miramos gráficamente… 
+Funciona mejor o no? Pues lo miramos gráficamente…
 
 ```{r}
 pacman::p_load(mice)
@@ -161,7 +178,7 @@ En resumen el método se aplica así::
  1. calcular el número de dimensiones a utilizar para la imputación con la función `estim_ncpPCA`.
  2. Completar la base utilizando el número de dimensiones calculada con `imputePCA`.
  3. Visualizar de manera gráfica la **incertidumbre** de la imputación con la función `MIPCA`.
- 
+
 En el siguiente ejemplo utilizamos una base más apropiada para PCA. Utilizamos la base `geno` del paquete `missMDA` que contiene información de genotipos y ambiente de cultivo, con NA's
 
 ```{r}
@@ -184,5 +201,3 @@ check_MDA <-
 
 plot(check_MDA)
 ```
-
-
