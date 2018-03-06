@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.36.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Imputacion de datos</title>
+    <title>Imputación de datos</title>
     <meta name="author" content="Cabro Killer">
     <meta name="keywords" content=", R">
 
@@ -30,15 +30,15 @@
     
 
     
-    <meta name="description" content="Imputación de datos en R Intro Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos valores ausentes (NA’s).">
-    <meta property="og:description" content="Imputación de datos en R Intro Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos valores ausentes (NA’s).">
+    <meta name="description" content="Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).">
+    <meta property="og:description" content="Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Imputacion de datos">
+    <meta property="og:title" content="Imputación de datos">
     <meta property="og:url" content="/2018/03/imputacion-de-datos/">
     <meta property="og:site_name" content="R con R">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="R con R">
-    <meta name="twitter:description" content="Imputación de datos en R Intro Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos valores ausentes (NA’s).">
+    <meta name="twitter:description" content="Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).">
     
     
 
@@ -80,14 +80,12 @@
   </div>
   
     
-      <a class="header-right-picture "
-         href="../../../#about">
+      <a class="header-right-icon open-algolia-search"
+         href="../../../#search">
     
     
+      <i class="fa fa-lg fa-search"></i>
     
-      
-        <img class="header-picture" src="//www.gravatar.com/avatar/3bfe8040619b741b1a16ab84f44b2adb?s=90" alt="Foto de autor" />
-      
     
     </a>
   
@@ -191,7 +189,7 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Imputacion de datos
+      Imputación de datos
     </h1>
   
   
@@ -236,21 +234,21 @@
             <div class="main-content-wrap">
               <div id="imputacion-de-datos-en-r" class="section level1">
 <h1>Imputación de datos en R</h1>
-<div id="intro" class="section level2">
-<h2>Intro</h2>
-<p>Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, <em>dropouts</em>, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos <em>valores ausentes</em> (NA’s).</p>
-<p>Una alternativa es <em>eliminar</em> los NA’s. Ya está!, fuera con todos los casos incompletos, pero esto tiene dos proeblmas.
+<div id="introduccion" class="section level2">
+<h2>Introducción</h2>
+<p>Estás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, <em>dropouts</em>, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga <em>algo</em> con los <strong>valores ausentes</strong> (NA’s).</p>
+<p>Una alternativa fácil es <em>eliminar</em> los NA’s. Ya está!, fuera con todos los casos incompletos palante… pero esto tiene dos problemas.
 1. A menos número de casos disminuye la potencia del estudio, y esto no es bueno, no?
 2. Hay un sesgo de selección si es que la falta de datos tiene relación con alguna de las variables relevantes.</p>
-<p>Pues ¿y que diablos hacemos entonces? pues podemos <em>imputar</em> los datos que faltan.</p>
+<p>Pues ¿qué diablos hacemos entonces? Podemos <em>imputar</em> los datos que faltan, que no es un insulto… A ver si nos aclaramos de cómo se hace en un proyecto para <em>imputar</em> los datos faltantes.</p>
 </div>
 <div id="explorar-na" class="section level2">
 <h2>Explorar NA</h2>
-<p>El primer paso como en cualquier trabajo de análisis de datos decente, implica un <em>análisis exploratorio</em> de los NA. En R esto esto se cosigue fácil y de manera gráfica con a librería <code>VIM</code>.</p>
+<p>El primer paso como en cualquier trabajo de análisis de datos decente, implica un <em>análisis exploratorio</em> de los NA. En R esto esto se consigue fácil y de manera gráfica con a librería <code>VIM</code>.</p>
 <pre class="r"><code># cargamos las librerías necesarias
 pacman::p_load(tidyverse, VIM, lattice, missForest, mice)</code></pre>
 <pre class="r"><code>set.seed(41)
-# creamos un patrón aleatório de NA 
+# creamos un patrón aleatório de NA
 mis_datos &lt;-
    diamonds %&gt;%
    sample_n(200) %&gt;%
@@ -274,39 +272,41 @@ mis_datos %&gt;%
 ##     color 0.065
 ##   clarity 0.060
 ##     carat 0.055</code></pre>
-<p>La funcion <code>VIM::aggr</code> permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan. En general se pueden establecer tres tipos de patrones de <a href="https://en.wikipedia.org/wiki/Missing_data#Missing_at_random">valores ausentes:</a>
+<p>La función <code>VIM::aggr</code> permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan.</p>
+<p>Se pueden establecer tres tipos de patrones de <a href="https://en.wikipedia.org/wiki/Missing_data#Missing_at_random">valores ausentes:</a>
 1. NA totalmente aleatorio (“missing completely at random, o MCAR”) en el que no hay un patrón establecido. El evento por el que hay un valor ausente es independiente de las variables observadas u otros parámetros de interés. Como sospechais es el patrón menos habitual…</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>NA aleatorio (“missing at random, o MAR”), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la iformación faltante con los datos existentes, es decir, en la que se puede hacer una estimacion coheerntes de los datos faltantes.</p></li>
-<li><p>NA no aleatorio (“missing not at random o MNAR), en el que hay una relacion directa entre el motivo de la ausencia de datos y su propio valor.</p></li>
+<li><p>NA aleatorio (“missing at random, o MAR”), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la información faltante con los datos existentes, es decir, en la que se puede hacer una estimación coherentes de los datos faltantes.</p></li>
+<li><p>NA no aleatorio (“missing not at random o MNAR), en el que hay una relación directa entre el motivo de la ausencia de datos y su propio valor.</p></li>
 </ol>
+<p>Cualquier técnica de imputación requiere de que los NA’s sigan un patrón MCAR o MAR. En casos en los que el patrón de NA’s siga un patrón de MNAR, hace necesario que posteriormente se deba hacer un <a href="https://en.wikipedia.org/wiki/Sensitivity_analysis">análisis de sensibilidad</a> para valorar la influencia de la imputación en el grado de incertidumbre del modelo generado. Si bien no es física cuántica, se lo parece, y si queréis adentraros en el tema hay una <a href="https://gerkovink.github.io/miceVignettes/Sensitivity_analysis/Sensitivity_analysis.html">viñeta</a> del paquete <code>mice</code> que trata de ello.</p>
 </div>
 <div id="metodos-de-imputacion-de-datos" class="section level2">
 <h2>Métodos de imputación de datos</h2>
-<div id="tenedencia-central" class="section level3">
-<h3>tenedencia central</h3>
-<p>Una primera alternbativa, la de <em>toda la vida</em>, es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que <em>si</em> tenemos. ¿Ventajas? Facil de hacer. ¿Problema? stamos disminyendo artificialmente la variabilidad de la muestra. La implementación en R es realativamente fácil como se muestra a continuación.</p>
-<pre class="r"><code>calc_moda &lt;- function(x) {
+<div id="tendencia-central" class="section level3">
+<h3>Tendencia central</h3>
+<p>Una primera alternativa, la de <em>toda la vida</em>, es imputar con algún estadístico de tendencia central (media, mediana, moda). Es decir, cambiamos todos los NA por el promedio de los datos que <em>si</em> tenemos. ¿Ventajas? Fácil de hacer. ¿Problema? estamos disminuyendo artificialmente la variabilidad de la muestra. La implementación en R es relativamente fácil como se muestra a continuación, utilizando el universo de librerías <code>tidyverse</code>.</p>
+<pre class="r"><code># función para calcular la moda estadística
+calc_moda &lt;- function(x) {
     z &lt;- table(as.vector(x))
     names(z)[z == max(z)]
 }
 
 imp_media &lt;-
     mis_datos %&gt;%
-# Media para variables numéricas
+# media para variables numéricas
     mutate_at(
        vars(carat, depth:z),
        funs(ifelse(is.na(.), mean(., na.rm = T), .))) %&gt;%
-# Moda para variables categóricas
+# moda para variables categóricas
     mutate_at(
        vars(cut:clarity),
        funs(as.ordered(ifelse(is.na(.), calc_moda(.), as.character(.)))))</code></pre>
-<div id="check" class="section level4">
-<h4>check</h4>
-<p>Con los datos imputados podemos ver cuanto se ajusta nuestro <em>invento</em> con la base original</p>
+<div id="revision-visual-de-imputaciones" class="section level4">
+<h4>Revisión visual de imputaciones</h4>
+<p>Con los datos imputados podemos ver gráficamente cuánto se ajusta nuestro <em>invento</em> con la base original.</p>
 <pre class="r"><code>mis_datos$.imp &lt;- &quot;original&quot;
 imp_media$.imp &lt;- &quot;imputado&quot;
-
 imp_media %&gt;%
     rbind(mis_datos) %&gt;%
     select(carat, depth, price, z, .imp) %&gt;%
@@ -328,14 +328,15 @@ imp_media %&gt;%
     scale_fill_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
     theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
 <p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-4-2.png" width="672" /></p>
-<p>Es facilmnte apreciable como tqnto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
+<p>Es fácilmente apreciable como tanto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
 </div>
 </div>
 <div id="imputacion-multiple" class="section level3">
-<h3>Imputación multiple</h3>
-<p>una de las metodologias mas utilizadas para la obtencion de una uestra imputada mas <em>correcta</em> es la que utliza tecnicas de imputcoin multiple, es decir imputar mas de una base de datos. Esto permite utlizar las <em>n</em> bases imputadas para hacer <em>n</em> modelos, que posteriormente se poolean (lo siento, no se como diablos se traduce eso…) con la ventaja de que el model final da cuenta de las pequeñas diferencias de las bases imputadas.
-LA mayoría de las librería permite calibrar bastante la generacion de las bases, además de la metodología para la imputacion de los valores. Uno de los paquetes mejor documentados es el <a href="http://stefvanbuuren.github.io/mice/">mice</a></p>
-<p>El proceso es relativamente facil y esta muy bien docuemntado en las viñetas. El método de imutación por deficnicion es el <em>predictive mean matching</em> para variables numéricas, <em>logistic imputation</em> para categoriales binarias y <em>polytomous regression imputation</em> para categoriales de mas de dos factores.</p>
+<h3>Imputación múltiple</h3>
+<p>Una de las metodologías más utilizadas para la obtención de una muestra imputada más <em>correcta</em> es la que utiliza técnicas de imputación múltiple, es decir imputar más de una base de datos. Esto permite utilizar las <em>n</em> bases imputadas para hacer <em>n</em> modelos, que posteriormente se <em>poolean</em> (lo siento, no se como diablos se traduce eso…) con la ventaja de que el modelo final da cuenta de la incerteza del modelo.</p>
+<p>La mayoría de las librerías permiten calibrar bastante la generación de la imputación, además de la metodología utilizada. Uno de los paquetes mejor documentados y <em>de moda</em> es el <a href="http://stefvanbuuren.github.io/mice/">mice</a></p>
+<p>El proceso es relativamente fácil y está muy bien documentado en las viñetas. El método de imputación por definición es el <em>predictive mean matching</em> para variables numéricas, <em>logistic imputation</em> para categoriales binarias y <em>polytomous regression imputation</em> para categoriales de más de dos factores. Para la utilización se usa la función <code>mice</code> que genera un objetos <code>mids</code> con las <em>n</em> bases imputadas. La librería trae además varios <em>metodos</em> para utilizar directamente los objetos <code>mids</code> en modelos estadísticos como regresiones lineales.<br />
+Funciona mejor o no? Pues lo miramos gráficamente…</p>
 <pre class="r"><code>pacman::p_load(mice)
 imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
 <pre><code>## 
@@ -391,23 +392,22 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
 <p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>
-<p>Se ajusta mejor no? y eso que no fue necesario tocar los parámetros por definicion y con sólo 5 iteraciones. El paquete <code>mice</code> tiene un montón de funciones para ajustar el modelo de prediccion. Si les interesa esta aproximacion metanse a leer las <a href="https://cran.r-project.org/web/packages/mice/vignettes/resources.html">viñetas</a>, que están super bien explicadas. <code>mice</code> ademas de los modelos poor definicion acepta varios tipos de modelamiento, inluyendo modelos bayesianos, analissi linear discriminante, y modelos de aperndieaje de maquinas mas coplejos como el Random Forest.</p>
-<p><code>mice</code> ademas tiene <em>metodos</em> para una serie de modelos de <em>r base</em> como las funiones que permiten utlizar la <em>clase</em> mids que son los objetos de imputqciones multiple que esxupe el <em>r</em></p>
+<p>Se ajusta mejor ¿no? y eso que no fue necesario tocar los parámetros por definición y con sólo 5 iteraciones. El paquete <code>mice</code> tiene un montón de funciones para ajustar el modelo de predicción. Además de los modelos por definición, <code>mice</code> acepta varios tipos de modelamiento, incluyendo <em>modelos bayesianos</em>, <em>análisis lineal discriminante</em>, y modelos de aprendizaje de máquinas más complejos como el <em>Random Forest</em>.</p>
+<p>Si les interesa esta aproximacion metanse a leer las <a href="https://cran.r-project.org/web/packages/mice/vignettes/resources.html">viñetas</a>, que están super bien explicadas. Si están pirados, hay un <a href="http://www.stefvanbuuren.nl/mi/FIMD.html">libro</a> del autor (Van Buuren, S.).</p>
 </div>
-</div>
-<div id="para-pca" class="section level2">
-<h2>Para PCA</h2>
-<p>Un problema de las imputaciones multiples es que depeneindo del trato que daremos a los datos, puede no haber un método estandarizado para lidiar con ellos. Es el caso del análisis de componentes priniciaples (PCA) donde no está muy bien establecida una metodología para lidiar con los NA y donde no hay un método específico de la libreia <code>mice</code>. Una aproximación util es la de utilizar es la librería <a href="http://factominer.free.fr/missMDA/index.html"><code>missMDA</code></a>, un <em>compañero</em> de la excelente librería para PCA <a href="http://factominer.free.fr/index.html"><code>FactoMineR</code></a>.
-<code>missMDA</code> permite la imputación de datos de tal manera de que los valores imputdos no tengan mayor reprecusion en el resultado del PCA utilizando metodos de reduccion del adimensinalidad ( para mas detalles de cómo lo hace, espabilar y mirar la documentación).
-En resumen el metodo se puede aplicar asi:
-1. se calucal el numero de dimensiones a utilizar para la imputacion con la funcion <code>estim_ncpPCA</code>.
-2. se completa la base utilizando el numero de dimensiones calculada con <code>imputePCA</code>.
-3. Se puede revisar de manera gráfica la incerteza de la imputación con la función <code>MIPCA</code>.</p>
-<p>En el siguente ejemplo cambiaremos la base a una que sea mas apropiada para un posterior PCA. utilizamos la base <code>geno</code> del paquete <code>missMDA</code> que contiene infromacion de genotipos y ambiente de cultivo, con NA’s</p>
+<div id="imputacion-simple-o-multiple-para-pca" class="section level3">
+<h3>Imputación simple o múltiple para PCA</h3>
+<p>Un problema de las imputaciones múltiples es que dependiendo del trato que daremos a los datos, puede no haber un método estandarizado para lidiar con ellos. Es el caso del análisis de componentes principales (PCA) donde no está muy bien establecida una metodología para lidiar con los NA y donde no hay un método específico de la librería <code>mice</code>. Una aproximación útil es la de utilizar es la librería <a href="http://factominer.free.fr/missMDA/index.html"><code>missMDA</code></a>, un <em>compañero</em> de la excelente librería para PCA <a href="http://factominer.free.fr/index.html"><code>FactoMineR</code></a> de <a href="http://math.agrocampus-ouest.fr/infoglueDeliverLive/membres/Francois.Husson">François Husson</a>, <a href="http://juliejosse.com/">Julie Josse</a> y <a href="http://sebastien.ledien.free.fr">Sébastien Lê</a></p>
+<p><code>missMDA</code> permite la imputación de datos de tal manera de que los valores imputados no tengan mayor repercusión en el resultado del PCA utilizando métodos de reducción de la dimensionalidad (para más detalles de cómo lo hace, espabilar y mirar la <a href="http://factominer.free.fr/missMDA/index.html">documentación</a>).</p>
+<p>En resumen el método se aplica así::
+1. calcular el número de dimensiones a utilizar para la imputación con la función <code>estim_ncpPCA</code>.
+2. Completar la base utilizando el número de dimensiones calculada con <code>imputePCA</code>.
+3. Visualizar de manera gráfica la <strong>incertidumbre</strong> de la imputación con la función <code>MIPCA</code>.</p>
+<p>En el siguiente ejemplo utilizamos una base más apropiada para PCA. Utilizamos la base <code>geno</code> del paquete <code>missMDA</code> que contiene información de genotipos y ambiente de cultivo, con NA’s</p>
 <pre class="r"><code>library(missMDA)
 data(geno)
 
-nb&lt;- 
+nb&lt;-
     geno %&gt;%
     estim_ncpPCA(ncp.max=10)</code></pre>
 <pre><code>## Warning in impute(X, ncp = ncp, scale = scale, method = method, threshold =
@@ -418,11 +418,12 @@ nb&lt;-
     purrr::pluck(1) %&gt;%
     as.tibble()
 
-check_MDA &lt;- 
+check_MDA &lt;-
     geno %&gt;%
     MIPCA(ncp=nb$ncp, nboot = 100)
 
 plot(check_MDA)</code></pre>
+</div>
 </div>
 </div>
 
@@ -672,14 +673,14 @@ plot(check_MDA)</code></pre>
             
             <div class="media-body">
               <a class="link-unstyled" href="https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
-                <h3 class="media-heading">Imputacion de datos</h3>
+                <h3 class="media-heading">Imputación de datos</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Imputación de datos en R Intro Está sentado frente al ordenador, preparado para aplicar todo el conocmiento que posee para explotar una base de datos. Pero se encuentra con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… En ciencias y sobretodo en las ciencias de la salud es común encontrar bases de datos incompletas. Para él análisis de datos usualmente es necesario elegir alguna metodología para lidiar con estos valores ausentes (NA’s).</div>
+              <div class="media-content hide-xs font-merryweather">Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -700,7 +701,7 @@ plot(check_MDA)</code></pre>
     
   
     
-    <div id="cover" style="background-image:url('http://res.cloudinary.com/dcfq7gkhs/image/upload/q_100/v1520152549/PIA18905-1920x1200.jpg');"></div>
+    <div id="cover" style="background-image:url('http://res.cloudinary.com/dcfq7gkhs/image/upload/q_100/v1520334838/PIA18848-1920x1200.jpg');"></div>
   
 
 
