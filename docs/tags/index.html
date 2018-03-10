@@ -181,12 +181,81 @@
         class="
                hasCoverMetaIn
                ">
-        <section class="postShorten-group main-content-wrap">
-          
-          
-          
 
-        </section>
+        <div id="tags-archives" class="main-content-wrap">
+          <form id="filter-form" action="#">
+            <input name="tag" type="text" class="form-control input--xlarge" placeholder="Buscar etiqueta" autofocus="autofocus">
+          </form>
+          <h4 class="archive-result text-color-base text-xlarge"
+              data-message-zero="no se encontraron etiquetas"
+              data-message-one="1 etiqueta encontrada"
+              data-message-other="{n} etiquetas encontradas"></h4>
+
+            <section>
+              
+                <a class="tag tag--primary tag--small" href="#imputaci%25C3%25B3n-list" data-tag="imputación">
+                  imputación
+                </a>
+              
+                <a class="tag tag--primary tag--small" href="#pca-list" data-tag="pca">
+                  pca
+                </a>
+              
+            </section>
+            <section class="boxes">
+              
+                <div id="imputaci%C3%B3n-list" class="archive box" data-tag="imputación">
+                  <h4 class="archive-title">
+                    <a class="link-unstyled" href="imputaci%C3%B3n">
+                      imputación (1)
+                    </a>
+                  </h4>
+                  <ul class="archive-posts">
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
+                          Imputación de datos
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    5 de Marzo 2018
+  
+</span>
+                      </li>
+                    
+                  </ul>
+                </div>
+              
+                <div id="pca-list" class="archive box" data-tag="pca">
+                  <h4 class="archive-title">
+                    <a class="link-unstyled" href="pca">
+                      pca (1)
+                    </a>
+                  </h4>
+                  <ul class="archive-posts">
+                    
+                      <li class="archive-post">
+                        <a class="archive-post-title" href="https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
+                          Imputación de datos
+                        </a>
+                        <span class="archive-post-date"> - 
+  
+  
+  
+  
+    5 de Marzo 2018
+  
+</span>
+                      </li>
+                    
+                  </ul>
+                </div>
+              
+           </section>
+         </div>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 Cabro Killer. Todos los derechos reservados
@@ -195,7 +264,6 @@
 
       </div>
     </div>
-    
     <div id="about">
   <div id="about-card">
     <div id="about-btn-close">
@@ -217,37 +285,6 @@
   </div>
 </div>
 
-    <div id="algolia-search-modal" class="modal-container">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="close-button"><i class="fa fa-close"></i></span>
-      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
-        <span class="searchby-algolia-text text-color-light text-small">by</span>
-        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
-      </a>
-      <i class="search-icon fa fa-search"></i>
-      <form id="algolia-search-form">
-        <input type="text" id="algolia-search-input" name="search"
-          class="form-control input--large search-input" placeholder="Buscar" />
-      </form>
-    </div>
-    <div class="modal-body">
-      <div class="no-result text-color-light text-center">no se encontraron artículos</div>
-      <div class="results">
-        
-        
-      </div>
-    </div>
-    <div class="modal-footer">
-      <p class="results-count text-medium"
-         data-message-zero="no se encontraron artículos"
-         data-message-one="1 artículo encontrado"
-         data-message-other="{n} artículos encontrados">
-         0 posts found
-      </p>
-    </div>
-  </div>
-</div>
     
   
     
@@ -255,13 +292,11 @@
   
 
 
-    
+  </body>
+  
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js" integrity="sha256-XrZQp+ZMfovqr6Hb2M6okHvSEYaB/+Xbx7toWmOOZUM=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" integrity="sha256-KacbO6Nou2geGJEUzQeKzKEdp/DENVGJKAd2v37moh0=" crossorigin="anonymous" />
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
@@ -285,7 +320,4 @@ $(document).ready(function() {
 
 
 
-    
-  </body>
 </html>
-

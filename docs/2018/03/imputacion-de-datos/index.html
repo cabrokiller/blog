@@ -30,15 +30,15 @@
     
 
     
-    <meta name="description" content="Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).">
-    <meta property="og:description" content="Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).">
+    <meta name="description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).">
+    <meta property="og:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Imputación de datos">
     <meta property="og:url" content="/2018/03/imputacion-de-datos/">
     <meta property="og:site_name" content="R con R">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="R con R">
-    <meta name="twitter:description" content="Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).">
+    <meta name="twitter:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).">
     
     
 
@@ -218,17 +218,6 @@
   </div>
 
 </div>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-      }
-    });
-    </script>
-    <script type="text/javascript"
-      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
@@ -236,14 +225,25 @@
 <h1>Imputación de datos en R</h1>
 <div id="introduccion" class="section level2">
 <h2>Introducción</h2>
-<p>Estás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, <em>dropouts</em>, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga <em>algo</em> con los <strong>valores ausentes</strong> (NA’s).</p>
-<p>Una alternativa fácil es <em>eliminar</em> los NA’s. Ya está!, fuera con todos los casos incompletos palante… pero esto tiene dos problemas.
-1. A menos número de casos disminuye la potencia del estudio, y esto no es bueno, no?
-2. Hay un sesgo de selección si es que la falta de datos tiene relación con alguna de las variables relevantes.</p>
-<p>Pues ¿qué diablos hacemos entonces? Podemos <em>imputar</em> los datos que faltan, que no es un insulto… A ver si nos aclaramos de cómo se hace en un proyecto para <em>imputar</em> los datos faltantes.</p>
+<p>Estás preparado para aplicar todo el conocimiento para estrujar esa base,
+pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas
+sin pasar, <em>dropouts</em>, o que el pobre desgraciado del interno asignado para
+pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo
+en las ciencias de la salud, lo más común encontrar bases de datos incompletas.
+Por otra parte, la mayoría de los análisis estadísticos requieren que <em>casos</em>
+completos por lo que hay que hacer <em>algo</em> con los <strong>valores ausentes</strong> (NA’s).</p>
+<p>Una alternativa fácil es <em>eliminar</em> los NA’s. Ya está!, fuera con todos los
+casos incompletos y palante… pero esto tiene dos problemas.
+1. A menos número de casos disminuye la potencia del estudio,
+y esto no es bueno, no?
+2. Hay un sesgo de selección si es que la falta de datos tiene relación con
+alguna de las variables relevantes (dependientes o indepes)</p>
+<p>Pues ¿qué diablos hacemos entonces? Podemos <em>imputar</em> los datos que faltan,
+que no es un insulto… a continuación intentare dar alguna pincelada de técnicas
+para <em>imputar</em> los datos faltantes en una base..</p>
 </div>
-<div id="explorar-na" class="section level2">
-<h2>Explorar NA</h2>
+<div id="analisis-exploratorio-de-nas" class="section level2">
+<h2>Análisis exploratorio de NA’s</h2>
 <p>El primer paso como en cualquier trabajo de análisis de datos decente, implica un <em>análisis exploratorio</em> de los NA. En R esto esto se consigue fácil y de manera gráfica con a librería <code>VIM</code>.</p>
 <pre class="r"><code># cargamos las librerías necesarias
 pacman::p_load(tidyverse, VIM, lattice, missForest, mice)</code></pre>
@@ -273,13 +273,20 @@ mis_datos %&gt;%
 ##   clarity 0.060
 ##     carat 0.055</code></pre>
 <p>La función <code>VIM::aggr</code> permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan.</p>
+<div id="tipos-de-nas" class="section level3">
+<h3>Tipos de NA’s</h3>
 <p>Se pueden establecer tres tipos de patrones de <a href="https://en.wikipedia.org/wiki/Missing_data#Missing_at_random">valores ausentes:</a>
 1. NA totalmente aleatorio (“missing completely at random, o MCAR”) en el que no hay un patrón establecido. El evento por el que hay un valor ausente es independiente de las variables observadas u otros parámetros de interés. Como sospechais es el patrón menos habitual…</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>NA aleatorio (“missing at random, o MAR”), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la información faltante con los datos existentes, es decir, en la que se puede hacer una estimación coherentes de los datos faltantes.</p></li>
 <li><p>NA no aleatorio (“missing not at random o MNAR), en el que hay una relación directa entre el motivo de la ausencia de datos y su propio valor.</p></li>
 </ol>
+</div>
+<div id="cantidad-de-nas" class="section level3">
+<h3>Cantidad de NA’s</h3>
+<p>% de NA</p>
 <p>Cualquier técnica de imputación requiere de que los NA’s sigan un patrón MCAR o MAR. En casos en los que el patrón de NA’s siga un patrón de MNAR, hace necesario que posteriormente se deba hacer un <a href="https://en.wikipedia.org/wiki/Sensitivity_analysis">análisis de sensibilidad</a> para valorar la influencia de la imputación en el grado de incertidumbre del modelo generado. Si bien no es física cuántica, se lo parece, y si queréis adentraros en el tema hay una <a href="https://gerkovink.github.io/miceVignettes/Sensitivity_analysis/Sensitivity_analysis.html">viñeta</a> del paquete <code>mice</code> que trata de ello.</p>
+</div>
 </div>
 <div id="metodos-de-imputacion-de-datos" class="section level2">
 <h2>Métodos de imputación de datos</h2>
@@ -680,7 +687,7 @@ plot(check_MDA)</code></pre>
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Imputación de datos en RIntroducciónEstás preparado para aplicar todo el conocimiento que posee para explotar una base de datos pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el desgraciado interno asignado a pasar los datos era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud es lo más común encontrar bases de datos incompletas y usualmente, la mayoría de los análisis requieren que se haga algo con los valores ausentes (NA’s).</div>
+              <div class="media-content hide-xs font-merryweather">Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -709,9 +716,6 @@ plot(check_MDA)</code></pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js" integrity="sha256-XrZQp+ZMfovqr6Hb2M6okHvSEYaB/+Xbx7toWmOOZUM=" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-light.min.css" integrity="sha256-KacbO6Nou2geGJEUzQeKzKEdp/DENVGJKAd2v37moh0=" crossorigin="anonymous" />
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 

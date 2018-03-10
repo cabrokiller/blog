@@ -8,7 +8,7 @@ categories:
 tags:
   - Imputación
   - PCA
-draft: true
+draft: false
 ---
 
 # Imputación de datos en R
@@ -19,21 +19,22 @@ Estás preparado para aplicar todo el conocimiento para estrujar esa base,
 pero te encuentras con un problema... Faltan datos. Casos incompletos, escalas
 sin pasar, *dropouts*, o que el pobre desgraciado del interno asignado para
 pasar los datos al ordenador era un poco vago... Pues en ciencias y sobretodo
-en las ciencias de la salud, lo más común encontrar bases de datos incompletas.
-Por otra parte, la mayoría de los análisis estadísticos requieren que *casos*
-completos por lo que hay que hacer *algo* con los **valores ausentes** (NA’s).  
+en las ciencias de la salud, lo más común encontrar bases de datos **incompletas**.
+Por otra parte, la mayoría de los análisis estadísticos requieren de *casos*
+completos, es decir, algo hay que hacer con los **valores ausentes** (NA’s).  
 
 Una alternativa fácil es *eliminar* los NA's. Ya está!, fuera con todos los
 casos incompletos y palante... pero esto tiene dos problemas.
  1. A menos número de casos disminuye la potencia del estudio,
     y esto no es bueno, no?
- 2. Hay un sesgo de selección si es que la falta de datos tiene relación con
+ 2. Hay un sesgo potencial de selección, si es que la falta de datos tiene relación con
     alguna de las variables relevantes (dependientes o indepes)
 
 
-Pues ¿qué diablos hacemos entonces? Podemos *imputar* los datos que faltan,
-que no es un insulto…  a continuación intentare dar alguna pincelada de técnicas
-para *imputar* los datos faltantes en una base..
+Pues ¿qué diablos hacemos entonces? Podemos *imputar* (que no es un insulto) 
+los datos que faltan. *Imputar* viene a ser, el rellenar los NA's con *el mejor valor posible*.
+Existen varias técnicas y maneras de definir este valor. Pero antes de esto, 
+debemos caracterizar que patrón siguen nuestras datos faltantes.
 
 ## Análisis exploratorio de NA's
 El primer paso como en cualquier trabajo de análisis de datos decente, implica un *análisis exploratorio* de los NA. En R esto esto se consigue fácil y de manera gráfica con a librería `VIM`.
@@ -52,13 +53,35 @@ mis_datos <-
    prodNA(noNA = 0.08)
 
 mis_datos %>%
-    aggr(col=mdc(1:2), numbers=F, sortVars=T,
+    aggr(col=mdc(1:2), numbers=T, sortVars=T,
          cex.axis=.8, gap=3, only.miss = F, combined = F,
          ylab=c("Proportion of missingness","Missingness Pattern"))
 
 ```
 
-La función `VIM::aggr` permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan.
+La función `VIM::aggr` permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan. En est ecaso podemos apreciar que el patrón de NA's es mas bien 
+homogeneo, y que la hay un porcentaje alto de casos completos. También es util ver el porcentaje de NA's *por variable*, que en este caso, ronda el 8%. 
+
+### Cantidad de NA's
+Un primer punto de discusión es que tan *tolerantes* vamos a ser. Que la tolerancia es 
+buena, lo sabemos, pero ¿Cuantos NA's podemos tolerar para decir que podemos 
+imputar los faltantes? No lo tengo tan claro, pero en la mayoría de las aproximaciones
+defienden que el máximo porcentaje de NA's no debe superar entre el 5 al 10%.
+
+Para ver posibles *relaciones* entre los valores ausentes, se muy util un gráfico de cajas
+de las variables.
+```{r}
+mis_datos %>%
+    select(carat, price) %>%
+    marginplot()
+```
+
+En este gráfico de **dos** de las variables (hay que ir de dos en dos) se aprecia 
+la distribución de la variables en **azul** y en rojo, la distribución *removiendo* los NA's
+de manera cruzada, es decir, en el eje **y** en azul esta la disrtibución de la variable *price*
+de la muestra completa, y en rojo la distribucion *removiendo* los casos que *no tienen* un valor
+para *carat*. Esto permite ver potenciales relacines entre la ausnecia de valor y 
+la distribución de alguna variable.
 
 ### Tipos de NA's
 Se pueden establecer tres tipos de patrones de [valores ausentes:](https://en.wikipedia.org/wiki/Missing_data#Missing_at_random)
@@ -67,9 +90,8 @@ Se pueden establecer tres tipos de patrones de [valores ausentes:](https://en.wi
  2. NA aleatorio ("missing at random, o MAR"), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la información faltante con los datos existentes, es decir, en la que se puede hacer una estimación coherentes de los datos faltantes.
 
  3. NA no aleatorio ("missing not at random o MNAR), en el que hay una relación directa entre el motivo de la ausencia de datos y su propio valor.
+ 
 
-### Cantidad de NA's
- % de NA
 
 
 Cualquier técnica de imputación requiere de que los NA’s sigan un patrón MCAR o MAR. En casos en los que el patrón de NA’s siga un patrón de MNAR, hace necesario que posteriormente se deba hacer un [análisis de sensibilidad](https://en.wikipedia.org/wiki/Sensitivity_analysis) para valorar la influencia de la imputación en el grado de incertidumbre del modelo generado. Si bien no es física cuántica, se lo parece, y si queréis adentraros en el tema hay una [viñeta](https://gerkovink.github.io/miceVignettes/Sensitivity_analysis/Sensitivity_analysis.html) del paquete `mice` que trata de ello.
