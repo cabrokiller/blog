@@ -12,7 +12,7 @@ draft: false
 coverImage: "https://res.cloudinary.com/dcfq7gkhs/image/upload/v1520669139/640px-Charles_Babbage_Difference_Engine_No2_Gears_on_Drawing.jpg"
 coverCaption: "Babbage difference engine"
 coverMeta: in
-coverSize: full
+coverSize: partial
 showTags: true
 showPagination: true
 showSocial: true
@@ -21,7 +21,6 @@ thumbnailImagePosition: right
 ---
 
 # Imputación de datos en R
-<!-- toc -->
 
 ## Introducción
 
