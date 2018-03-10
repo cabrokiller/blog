@@ -1,14 +1,14 @@
 
 
   
+    
+  
 
 
   
 
 
 
-
-  
 
 
   
@@ -24,7 +24,7 @@
     <meta name="author" content="Cabro Killer">
     <meta name="keywords" content=", R">
 
-    <link rel="icon" href="../../favicon.png">
+    <link rel="icon" href="../../../favicon.png">
     
 
     
@@ -32,7 +32,7 @@
     <meta property="og:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Imputación de datos">
-    <meta property="og:url" content="/blog/imputacion-de-datos/">
+    <meta property="og:url" content="/2018/03/imputacion-de-datos/">
     <meta property="og:site_name" content="R con R">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="R con R">
@@ -44,7 +44,7 @@
     
 
     
-      <meta property="og:image" content="//www.gravatar.com/avatar/3bfe8040619b741b1a16ab84f44b2adb?s=640">
+      <meta property="og:image" content="https://res.cloudinary.com/dcfq7gkhs/image/upload/v1520673177/logo.png">
     
 
     
@@ -59,7 +59,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="../../css/style-g9omrqyskcqxglg3auk9hqqec2c7kna8wmm8bc5c6xv87l66pwcmtof77z59.min.css" />
+    <link rel="stylesheet" href="../../../css/style-g9omrqyskcqxglg3auk9hqqec2c7kna8wmm8bc5c6xv87l66pwcmtof77z59.min.css" />
     
     
 
@@ -74,12 +74,12 @@
       <header id="header" data-behavior="2">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../">R con R</a>
+    <a class="header-title-link" href="../../../">R con R</a>
   </div>
   
     
       <a class="header-right-icon open-algolia-search"
-         href="../../#search">
+         href="../../../#search">
     
     
       <i class="fa fa-lg fa-search"></i>
@@ -93,8 +93,8 @@
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="../../#about">
-          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/3bfe8040619b741b1a16ab84f44b2adb?s=110" alt="Foto de autor" />
+        <a href="../../../#about">
+          <img class="sidebar-profile-picture" src="https://res.cloudinary.com/dcfq7gkhs/image/upload/v1520673177/logo.png" alt="Foto de autor" />
         </a>
         <h4 class="sidebar-profile-name">Cabro Killer</h4>
         
@@ -104,7 +104,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../">
+      <a class="sidebar-button-link " href="../../../">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -114,7 +114,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../categories">
+      <a class="sidebar-button-link " href="../../../categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -124,7 +124,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../archives">
+      <a class="sidebar-button-link " href="../../../archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -134,7 +134,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../#about">
+      <a class="sidebar-button-link " href="../../../#about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -162,7 +162,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../index.xml">
+      <a class="sidebar-button-link " href="../../../index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -209,7 +209,7 @@
   
     <span>en</span>
     
-      <a class="category-link" href="../../categories/r">R</a>
+      <a class="category-link" href="../../../categories/r">R</a>
     
   
 
@@ -259,7 +259,7 @@ mis_datos %&gt;%
          ylab=c(&quot;Proportion of missingness&quot;,&quot;Missingness Pattern&quot;))</code></pre>
 <pre><code>## Warning in plot.aggr(res, ...): not enough vertical space to display
 ## frequencies (too many combinations)</code></pre>
-<p><img src="../../rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" /></p>
 <pre><code>## 
 ##  Variables sorted by number of missings: 
 ##  Variable Count
@@ -286,7 +286,7 @@ de las variables.</p>
 <pre class="r"><code>mis_datos %&gt;%
     select(carat, price) %&gt;%
     marginplot()</code></pre>
-<p><img src="../../rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" /></p>
 <p>En este gráfico de <strong>dos</strong> de las variables (hay que ir de dos en dos) se aprecia
 la distribución de la variables en <strong>azul</strong> y en rojo, la distribución <em>removiendo</em> los NA’s
 de manera cruzada, es decir, en el eje <strong>y</strong> en azul esta la disrtibución de la variable <em>price</em>
@@ -340,7 +340,7 @@ imp_media %&gt;%
     facet_wrap(~ key, scales = &quot;free&quot;) +
     scale_color_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
     theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
-<p><img src="../../rmarkdown-libs/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>imp_media %&gt;%
     rbind(mis_datos) %&gt;%
     select(color, cut, .imp) %&gt;%
@@ -351,7 +351,7 @@ imp_media %&gt;%
     facet_wrap(~ key, scales = &quot;free&quot;) +
     scale_fill_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
     theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
-<p><img src="../../rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>
 <p>Es fácilmente apreciable como tanto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
 </div>
 </div>
@@ -402,7 +402,7 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
     scale_color_brewer(type = &quot;seq&quot;, palette = 8) +
     theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
 <pre><code>## Warning: Removed 56 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="../../rmarkdown-libs/figure-html4/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>imp_mice %&gt;%
     complete(action = &quot;long&quot;) %&gt;%
     select(-.id) %&gt;%
@@ -415,7 +415,7 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
     theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<p><img src="../../rmarkdown-libs/figure-html4/unnamed-chunk-6-2.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-6-2.png" width="672" /></p>
 <p>Se ajusta mejor ¿no? y eso que no fue necesario tocar los parámetros por definición y con sólo 5 iteraciones. El paquete <code>mice</code> tiene un montón de funciones para ajustar el modelo de predicción. Además de los modelos por definición, <code>mice</code> acepta varios tipos de modelamiento, incluyendo <em>modelos bayesianos</em>, <em>análisis lineal discriminante</em>, y modelos de aprendizaje de máquinas más complejos como el <em>Random Forest</em>.</p>
 <p>Si les interesa esta aproximacion metanse a leer las <a href="https://cran.r-project.org/web/packages/mice/vignettes/resources.html">viñetas</a>, que están super bien explicadas. Si están pirados, hay un <a href="http://www.stefvanbuuren.nl/mi/FIMD.html">libro</a> del autor (Van Buuren, S.).</p>
 </div>
@@ -462,9 +462,9 @@ plot(check_MDA)</code></pre>
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">ETIQUETADO EN</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../tags/imputaci%C3%B3n/">Imputación</a>
+  <a class="tag tag--primary tag--small" href="../../../tags/imputaci%C3%B3n/">Imputación</a>
 
-  <a class="tag tag--primary tag--small" href="../../tags/pca/">PCA</a>
+  <a class="tag tag--primary tag--small" href="../../../tags/pca/">PCA</a>
 
                   </div>
                 
@@ -503,19 +503,19 @@ plot(check_MDA)</code></pre>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/blog/imputacion-de-datos/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/blog/imputacion-de-datos/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/blog/imputacion-de-datos/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -589,19 +589,19 @@ plot(check_MDA)</code></pre>
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/blog/imputacion-de-datos/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/blog/imputacion-de-datos/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/blog/imputacion-de-datos/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -631,19 +631,19 @@ plot(check_MDA)</code></pre>
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2Fblog%2Fimputacion-de-datos%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F03%2Fimputacion-de-datos%2F">
           <i class="fa fa-facebook-official"></i><span>Compartir en Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2Fblog%2Fimputacion-de-datos%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F03%2Fimputacion-de-datos%2F">
           <i class="fa fa-twitter"></i><span>Compartir en Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2Fblog%2Fimputacion-de-datos%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcabrokiller.github.io%2Fblog%2F2018%2F03%2Fimputacion-de-datos%2F">
           <i class="fa fa-google-plus"></i><span>Compartir en Google&#43;</span>
         </a>
       </li>
@@ -659,7 +659,7 @@ plot(check_MDA)</code></pre>
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="//www.gravatar.com/avatar/3bfe8040619b741b1a16ab84f44b2adb?s=110" alt="Foto de autor" />
+      <img id="about-card-picture" src="https://res.cloudinary.com/dcfq7gkhs/image/upload/v1520673177/logo.png" alt="Foto de autor" />
     
     <h4 id="about-card-name">Cabro Killer</h4>
     
@@ -693,6 +693,23 @@ plot(check_MDA)</code></pre>
       <div class="results">
         
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://cabrokiller.github.io/blog/2018/03/imputacion-de-datos/">
+                <h3 class="media-heading">Imputación de datos</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -700,7 +717,7 @@ plot(check_MDA)</code></pre>
          data-message-zero="no se encontraron artículos"
          data-message-one="1 artículo encontrado"
          data-message-other="{n} artículos encontrados">
-         0 posts found
+         1 posts found
       </p>
     </div>
   </div>
@@ -720,7 +737,7 @@ plot(check_MDA)</code></pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="../../js/script-i3qfvucxesjlkumtxnfszcvopfctauzbepgjrjw1j1xpirurr4uy5p6lchue.min.js"></script>
+<script src="../../../js/script-i3qfvucxesjlkumtxnfszcvopfctauzbepgjrjw1j1xpirurr4uy5p6lchue.min.js"></script>
 
 
 
@@ -741,9 +758,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/cabrokiller.github.io\/blog\/blog\/imputacion-de-datos\/';
+          this.page.url = 'https:\/\/cabrokiller.github.io\/blog\/2018\/03\/imputacion-de-datos\/';
           
-            this.page.identifier = '\/blog\/imputacion-de-datos\/'
+            this.page.identifier = '\/2018\/03\/imputacion-de-datos\/'
           
         };
         (function() {

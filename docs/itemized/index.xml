@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Itemized on R con R</title>
+    <title>Itemizeds on R con R</title>
     <link>https://cabrokiller.github.io/blog/itemized/</link>
-    <description>Recent content in Itemized on R con R</description>
+    <description>Recent content in Itemizeds on R con R</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>es-es</language>
     <lastBuildDate>Thu, 22 Jun 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://cabrokiller.github.io/blog/itemized/index.xml" rel="self" type="application/rss+xml" />
