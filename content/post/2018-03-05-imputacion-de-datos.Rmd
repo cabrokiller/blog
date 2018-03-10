@@ -9,8 +9,8 @@ tags:
   - Imputación
   - PCA
 draft: false
-coverImage: "https://res.cloudinary.com/dcfq7gkhs/image/upload/v1520669139/640px-Charles_Babbage_Difference_Engine_No2_Gears_on_Drawing.jpg"
-coverCaption: "Babbage difference engine"
+coverImage: "http://res.cloudinary.com/dcfq7gkhs/image/upload/v1520669897/LondonScienceMuseumsReplicaDifferenceEngine.jpg"
+coverCaption:
 coverMeta: in
 coverSize: partial
 showTags: true
