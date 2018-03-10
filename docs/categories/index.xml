@@ -1,22 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on R con R</title>
+    <title>R con R</title>
     <link>https://cabrokiller.github.io/blog/categories/</link>
-    <description>Recent content in Categories on R con R</description>
+    <description>Recent content on R con R</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>es-es</language>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 22 Jun 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://cabrokiller.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>R</title>
-      <link>https://cabrokiller.github.io/blog/categories/r/</link>
-      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+      <title>Fancy App 1</title>
+      <link>https://cabrokiller.github.io/blog/itemized/item1/</link>
+      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://cabrokiller.github.io/blog/categories/r/</guid>
-      <description></description>
+      <guid>https://cabrokiller.github.io/blog/itemized/item1/</guid>
+      <description> App 1 </description>
+    </item>
+    
+    <item>
+      <title>Fancy App 2</title>
+      <link>https://cabrokiller.github.io/blog/itemized/item2/</link>
+      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cabrokiller.github.io/blog/itemized/item2/</guid>
+      <description> App 2 </description>
+    </item>
+    
+    <item>
+      <title>Fancy App 3</title>
+      <link>https://cabrokiller.github.io/blog/itemized/item3/</link>
+      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cabrokiller.github.io/blog/itemized/item3/</guid>
+      <description> App 3 </description>
+    </item>
+    
+    <item>
+      <title>Fancy App 4</title>
+      <link>https://cabrokiller.github.io/blog/itemized/item4/</link>
+      <pubDate>Thu, 22 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://cabrokiller.github.io/blog/itemized/item4/</guid>
+      <description> App 4 </description>
     </item>
     
   </channel>

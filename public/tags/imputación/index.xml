@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Imputación on Hugo Future Imperfect</title>
+    <link>/tags/imputaci%C3%B3n/</link>
+    <description>Recent content in Imputación on Hugo Future Imperfect</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/imputaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Imputación de datos</title>
+      <link>/post/imputacion-de-datos/</link>
+      <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/imputacion-de-datos/</guid>
+      <description>Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).</description>
+    </item>
+    
+  </channel>
+</rss>

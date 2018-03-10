@@ -5,7 +5,7 @@
     <link>https://cabrokiller.github.io/blog/tags/</link>
     <description>Recent content in Tags on R con R</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>es-es</language>
+    <language>en-us</language>
     <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://cabrokiller.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Pca</title>
+      <title>PCA</title>
       <link>https://cabrokiller.github.io/blog/tags/pca/</link>
       <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
       
