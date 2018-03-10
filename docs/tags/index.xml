@@ -6,44 +6,17 @@
     <description>Recent content in Tags on R con R</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-es</language>
-    <lastBuildDate>Mon, 15 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://cabrokiller.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Disqus</title>
-      <link>https://cabrokiller.github.io/blog/tags/disqus/</link>
-      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
+      <title>Blog</title>
+      <link>https://cabrokiller.github.io/blog/tags/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://cabrokiller.github.io/blog/tags/disqus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Google Analytics</title>
-      <link>https://cabrokiller.github.io/blog/tags/google-analytics/</link>
-      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://cabrokiller.github.io/blog/tags/google-analytics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gravatar</title>
-      <link>https://cabrokiller.github.io/blog/tags/gravatar/</link>
-      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://cabrokiller.github.io/blog/tags/gravatar/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hexo Theme</title>
-      <link>https://cabrokiller.github.io/blog/tags/hexo-theme/</link>
-      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://cabrokiller.github.io/blog/tags/hexo-theme/</guid>
+      <guid>https://cabrokiller.github.io/blog/tags/blog/</guid>
       <description></description>
     </item>
     
@@ -66,11 +39,11 @@
     </item>
     
     <item>
-      <title>Responsive</title>
-      <link>https://cabrokiller.github.io/blog/tags/responsive/</link>
-      <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
+      <title>R</title>
+      <link>https://cabrokiller.github.io/blog/tags/r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://cabrokiller.github.io/blog/tags/responsive/</guid>
+      <guid>https://cabrokiller.github.io/blog/tags/r/</guid>
       <description></description>
     </item>
     

@@ -160,7 +160,7 @@ Funciona mejor o no? Pues lo miramos gráficamente…
 
 ```{r}
 pacman::p_load(mice)
-imp_mice <- mice(select(mis_datos, -.imp))
+imp_mice <- mice(select(mis_datos, -.imp), m = 3, maxit = 3)
 
 imp_mice %>%
     complete(action = "long") %>%
@@ -186,7 +186,7 @@ imp_mice %>%
     theme_minimal() + labs(title="Imputación con moda - variables categóricas")
 ```
 
-Se ajusta mejor ¿no? y eso que no fue necesario tocar los parámetros por definición y con sólo 5 iteraciones. El paquete `mice` tiene un montón de funciones para ajustar el modelo de predicción.  Además de los modelos por definición, `mice` acepta varios tipos de modelamiento, incluyendo *modelos bayesianos*, *análisis lineal discriminante*, y modelos de aprendizaje de máquinas más complejos como el *Random Forest*.
+Se ajusta mejor ¿no? y eso que no fue necesario tocar los parámetros por definición y con sólo 3 iteraciones. El paquete `mice` tiene un montón de funciones para ajustar el modelo de predicción.  Además de los modelos por definición, `mice` acepta varios tipos de modelamiento, incluyendo *modelos bayesianos*, *análisis lineal discriminante*, y modelos de aprendizaje de máquinas más complejos como el *Random Forest*.
 
 Si les interesa esta aproximacion metanse a leer las [viñetas](https://cran.r-project.org/web/packages/mice/vignettes/resources.html), que están super bien explicadas. Si están pirados, hay un [libro](http://www.stefvanbuuren.nl/mi/FIMD.html) del autor (Van Buuren, S.).
 

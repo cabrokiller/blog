@@ -8,89 +8,28 @@
   </url>
   
   <url>
-    <loc>https://cabrokiller.github.io/blog/itemized/item1/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/itemized/item2/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/itemized/item3/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/itemized/item4/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/2015/06/welcome-to-tranquilpeak-0.4.3-beta/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/about/</loc>
-    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/categories/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://cabrokiller.github.io/blog/archives/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://cabrokiller.github.io/blog/tags/blog/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/categories/blog/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://cabrokiller.github.io/blog/categories/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/contact/</loc>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/tags/disqus/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/tags/google-analytics/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/tags/gravatar/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/tags/hexo-theme/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://cabrokiller.github.io/blog/tags/imputaci%C3%B3n/</loc>
     <lastmod>2018-03-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/itemized/</loc>
-    <lastmod>2017-06-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,6 +46,11 @@
   </url>
   
   <url>
+    <loc>https://cabrokiller.github.io/blog/tags/r/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://cabrokiller.github.io/blog/categories/r/</loc>
     <lastmod>2018-03-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -119,26 +63,17 @@
   </url>
   
   <url>
-    <loc>https://cabrokiller.github.io/blog/categories/releases/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://cabrokiller.github.io/blog/1/01/r-con-r/</loc>
   </url>
   
   <url>
-    <loc>https://cabrokiller.github.io/blog/tags/responsive/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <loc>https://cabrokiller.github.io/blog/categories/releases/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://cabrokiller.github.io/blog/tags/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://cabrokiller.github.io/blog/categories/tranquilpeak/</loc>
-    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

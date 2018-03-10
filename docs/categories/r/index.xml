@@ -20,5 +20,14 @@
       <description>Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).</description>
     </item>
     
+    <item>
+      <title>R con R</title>
+      <link>https://cabrokiller.github.io/blog/1/01/r-con-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cabrokiller.github.io/blog/1/01/r-con-r/</guid>
+      <description>Hola</description>
+    </item>
+    
   </channel>
 </rss>
