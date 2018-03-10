@@ -93,7 +93,7 @@ relativeURLs = true
 [params.intro]
   header    = "R con R"
 
-  paragraph = "blog pipi"
+  paragraph = "blog"
 
   about     = "about me"
 

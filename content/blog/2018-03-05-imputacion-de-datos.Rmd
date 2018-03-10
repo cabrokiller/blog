@@ -9,15 +9,6 @@ tags:
   - Imputación
   - PCA
 draft: false
-coverImage:
-coverCaption:
-coverMeta: in
-coverSize: partial
-showTags: true
-showPagination: true
-showSocial: true
-showDate: true
-thumbnailImagePosition: right
 ---
 
 # Imputación de datos en R
