@@ -28,6 +28,11 @@
   </url>
   
   <url>
+    <loc>https://cabrokiller.github.io/blog/2015/06/welcome-to-tranquilpeak-0.4.3-beta/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://cabrokiller.github.io/blog/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
@@ -51,6 +56,30 @@
   
   <url>
     <loc>https://cabrokiller.github.io/blog/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/tags/disqus/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/tags/google-analytics/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/tags/gravatar/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/tags/hexo-theme/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -90,8 +119,26 @@
   </url>
   
   <url>
+    <loc>https://cabrokiller.github.io/blog/categories/releases/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/tags/responsive/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://cabrokiller.github.io/blog/tags/</loc>
-    <lastmod>2018-03-05T00:00:00+00:00</lastmod>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cabrokiller.github.io/blog/categories/tranquilpeak/</loc>
+    <lastmod>2015-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
