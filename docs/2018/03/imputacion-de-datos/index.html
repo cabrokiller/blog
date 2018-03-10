@@ -30,15 +30,15 @@
     
 
     
-    <meta name="description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).">
-    <meta property="og:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).">
+    <meta name="description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).">
+    <meta property="og:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Imputación de datos">
     <meta property="og:url" content="/2018/03/imputacion-de-datos/">
     <meta property="og:site_name" content="R con R">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="R con R">
-    <meta name="twitter:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).">
+    <meta name="twitter:description" content="Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).">
     
     
 
@@ -51,6 +51,8 @@
 
     
     
+      <meta property="og:image" content="https://commons.wikimedia.org/wiki/File:Babbage_Difference_Engine.jpg">
+    
     
 
     
@@ -61,7 +63,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
     
     
-    <link rel="stylesheet" href="../../../css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    <link rel="stylesheet" href="../../../css/style-jnd2nel0wfbu80hgwc7nfbmk9meb22mxrfh5eoin8ij1usunowitk673oo4y.min.css" />
     
     
 
@@ -178,12 +180,22 @@
 </nav>
 
       
+  <div class="post-header-cover
+              text-left
+              post-header-cover--full"
+       style="background-image:url('https://commons.wikimedia.org/wiki/File:Babbage_Difference_Engine.jpg')"
+       data-behavior="2">
+    
+  </div>
+
 
       <div id="main" data-behavior="2"
-        class="
-               hasCoverMetaIn
-               ">
+        class="hasCover
+               hasCoverMetaOut
+               hasCoverCaption">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+            <span class="post-header-cover-caption caption">Babbage difference engine</span>
           
           
             <div class="post-header main-content-wrap text-left">
@@ -223,24 +235,26 @@
             <div class="main-content-wrap">
               <div id="imputacion-de-datos-en-r" class="section level1">
 <h1>Imputación de datos en R</h1>
+<h1 id="table-of-contents">Tabla de contenido</h1>
 <div id="introduccion" class="section level2">
 <h2>Introducción</h2>
 <p>Estás preparado para aplicar todo el conocimiento para estrujar esa base,
 pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas
 sin pasar, <em>dropouts</em>, o que el pobre desgraciado del interno asignado para
 pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo
-en las ciencias de la salud, lo más común encontrar bases de datos incompletas.
-Por otra parte, la mayoría de los análisis estadísticos requieren que <em>casos</em>
-completos por lo que hay que hacer <em>algo</em> con los <strong>valores ausentes</strong> (NA’s).</p>
+en las ciencias de la salud, lo más común encontrar bases de datos <strong>incompletas</strong>.
+Por otra parte, la mayoría de los análisis estadísticos requieren de <em>casos</em>
+completos, es decir, algo hay que hacer con los <strong>valores ausentes</strong> (NA’s).</p>
 <p>Una alternativa fácil es <em>eliminar</em> los NA’s. Ya está!, fuera con todos los
 casos incompletos y palante… pero esto tiene dos problemas.
 1. A menos número de casos disminuye la potencia del estudio,
 y esto no es bueno, no?
-2. Hay un sesgo de selección si es que la falta de datos tiene relación con
+2. Hay un sesgo potencial de selección, si es que la falta de datos tiene relación con
 alguna de las variables relevantes (dependientes o indepes)</p>
-<p>Pues ¿qué diablos hacemos entonces? Podemos <em>imputar</em> los datos que faltan,
-que no es un insulto… a continuación intentare dar alguna pincelada de técnicas
-para <em>imputar</em> los datos faltantes en una base..</p>
+<p>Pues ¿qué diablos hacemos entonces? Podemos <em>imputar</em> (que no es un insulto)
+los datos que faltan. <em>Imputar</em> viene a ser, el rellenar los NA’s con <em>el mejor valor posible</em>.
+Existen varias técnicas y maneras de definir este valor. Pero antes de esto,
+debemos caracterizar que patrón siguen nuestras datos faltantes.</p>
 </div>
 <div id="analisis-exploratorio-de-nas" class="section level2">
 <h2>Análisis exploratorio de NA’s</h2>
@@ -255,9 +269,11 @@ mis_datos &lt;-
    prodNA(noNA = 0.08)
 
 mis_datos %&gt;%
-    aggr(col=mdc(1:2), numbers=F, sortVars=T,
+    aggr(col=mdc(1:2), numbers=T, sortVars=T,
          cex.axis=.8, gap=3, only.miss = F, combined = F,
          ylab=c(&quot;Proportion of missingness&quot;,&quot;Missingness Pattern&quot;))</code></pre>
+<pre><code>## Warning in plot.aggr(res, ...): not enough vertical space to display
+## frequencies (too many combinations)</code></pre>
 <p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" /></p>
 <pre><code>## 
 ##  Variables sorted by number of missings: 
@@ -272,7 +288,27 @@ mis_datos %&gt;%
 ##     color 0.065
 ##   clarity 0.060
 ##     carat 0.055</code></pre>
-<p>La función <code>VIM::aggr</code> permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan.</p>
+<p>La función <code>VIM::aggr</code> permite tener una representación gráfica de los NA y permite ver el patrón que estos presentan. En est ecaso podemos apreciar que el patrón de NA’s es mas bien
+homogeneo, y que la hay un porcentaje alto de casos completos. También es util ver el porcentaje de NA’s <em>por variable</em>, que en este caso, ronda el 8%.</p>
+<div id="cantidad-de-nas" class="section level3">
+<h3>Cantidad de NA’s</h3>
+<p>Un primer punto de discusión es que tan <em>tolerantes</em> vamos a ser. Que la tolerancia es
+buena, lo sabemos, pero ¿Cuantos NA’s podemos tolerar para decir que podemos
+imputar los faltantes? No lo tengo tan claro, pero en la mayoría de las aproximaciones
+defienden que el máximo porcentaje de NA’s no debe superar entre el 5 al 10%.</p>
+<p>Para ver posibles <em>relaciones</em> entre los valores ausentes, se muy util un gráfico de cajas
+de las variables.</p>
+<pre class="r"><code>mis_datos %&gt;%
+    select(carat, price) %&gt;%
+    marginplot()</code></pre>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" /></p>
+<p>En este gráfico de <strong>dos</strong> de las variables (hay que ir de dos en dos) se aprecia
+la distribución de la variables en <strong>azul</strong> y en rojo, la distribución <em>removiendo</em> los NA’s
+de manera cruzada, es decir, en el eje <strong>y</strong> en azul esta la disrtibución de la variable <em>price</em>
+de la muestra completa, y en rojo la distribucion <em>removiendo</em> los casos que <em>no tienen</em> un valor
+para <em>carat</em>. Esto permite ver potenciales relacines entre la ausnecia de valor y
+la distribución de alguna variable.</p>
+</div>
 <div id="tipos-de-nas" class="section level3">
 <h3>Tipos de NA’s</h3>
 <p>Se pueden establecer tres tipos de patrones de <a href="https://en.wikipedia.org/wiki/Missing_data#Missing_at_random">valores ausentes:</a>
@@ -281,10 +317,6 @@ mis_datos %&gt;%
 <li><p>NA aleatorio (“missing at random, o MAR”), en el cual la ausencia de datos no completamente aleatoria, pero en la que se puede dar cuenta de la información faltante con los datos existentes, es decir, en la que se puede hacer una estimación coherentes de los datos faltantes.</p></li>
 <li><p>NA no aleatorio (“missing not at random o MNAR), en el que hay una relación directa entre el motivo de la ausencia de datos y su propio valor.</p></li>
 </ol>
-</div>
-<div id="cantidad-de-nas" class="section level3">
-<h3>Cantidad de NA’s</h3>
-<p>% de NA</p>
 <p>Cualquier técnica de imputación requiere de que los NA’s sigan un patrón MCAR o MAR. En casos en los que el patrón de NA’s siga un patrón de MNAR, hace necesario que posteriormente se deba hacer un <a href="https://en.wikipedia.org/wiki/Sensitivity_analysis">análisis de sensibilidad</a> para valorar la influencia de la imputación en el grado de incertidumbre del modelo generado. Si bien no es física cuántica, se lo parece, y si queréis adentraros en el tema hay una <a href="https://gerkovink.github.io/miceVignettes/Sensitivity_analysis/Sensitivity_analysis.html">viñeta</a> del paquete <code>mice</code> que trata de ello.</p>
 </div>
 </div>
@@ -323,7 +355,7 @@ imp_media %&gt;%
     facet_wrap(~ key, scales = &quot;free&quot;) +
     scale_color_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
     theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
-<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
 <pre class="r"><code>imp_media %&gt;%
     rbind(mis_datos) %&gt;%
     select(color, cut, .imp) %&gt;%
@@ -334,7 +366,7 @@ imp_media %&gt;%
     facet_wrap(~ key, scales = &quot;free&quot;) +
     scale_fill_brewer(type = &quot;qual&quot;, palette = 6, direction = 1) +
     theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
-<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>
 <p>Es fácilmente apreciable como tanto en las variables numéricas como en las categóricas, la tendencia central está exagerada y se aleja de la distribución original.</p>
 </div>
 </div>
@@ -385,7 +417,7 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
     scale_color_brewer(type = &quot;seq&quot;, palette = 8) +
     theme_minimal() + labs(title=&quot;Imputación con media aritmética - variables numéricas&quot;)</code></pre>
 <pre><code>## Warning: Removed 56 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>imp_mice %&gt;%
     complete(action = &quot;long&quot;) %&gt;%
     select(-.id) %&gt;%
@@ -398,7 +430,7 @@ imp_mice &lt;- mice(select(mis_datos, -.imp))</code></pre>
     theme_minimal() + labs(title=&quot;Imputación con moda - variables categóricas&quot;)</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="../../../rmarkdown-libs/figure-html4/unnamed-chunk-6-2.png" width="672" /></p>
 <p>Se ajusta mejor ¿no? y eso que no fue necesario tocar los parámetros por definición y con sólo 5 iteraciones. El paquete <code>mice</code> tiene un montón de funciones para ajustar el modelo de predicción. Además de los modelos por definición, <code>mice</code> acepta varios tipos de modelamiento, incluyendo <em>modelos bayesianos</em>, <em>análisis lineal discriminante</em>, y modelos de aprendizaje de máquinas más complejos como el <em>Random Forest</em>.</p>
 <p>Si les interesa esta aproximacion metanse a leer las <a href="https://cran.r-project.org/web/packages/mice/vignettes/resources.html">viñetas</a>, que están super bien explicadas. Si están pirados, hay un <a href="http://www.stefvanbuuren.nl/mi/FIMD.html">libro</a> del autor (Van Buuren, S.).</p>
 </div>
@@ -513,7 +545,7 @@ plot(check_MDA)</code></pre>
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -599,7 +631,7 @@ plot(check_MDA)</code></pre>
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -687,7 +719,7 @@ plot(check_MDA)</code></pre>
                   Mar 3, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren que casos completos por lo que hay que hacer algo con los valores ausentes (NA’s).</div>
+              <div class="media-content hide-xs font-merryweather">Imputación de datos en R Introducción Estás preparado para aplicar todo el conocimiento para estrujar esa base, pero te encuentras con un problema… Faltan datos. Casos incompletos, escalas sin pasar, dropouts, o que el pobre desgraciado del interno asignado para pasar los datos al ordenador era un poco vago… Pues en ciencias y sobretodo en las ciencias de la salud, lo más común encontrar bases de datos incompletas. Por otra parte, la mayoría de los análisis estadísticos requieren de casos completos, es decir, algo hay que hacer con los valores ausentes (NA’s).</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -720,7 +752,7 @@ plot(check_MDA)</code></pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
 
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="../../../js/script-nmrftd6i0ukak3kqllpprjotqzwkv5l3rsqemufgbbjgrxwv801l2uzfn9uj.min.js"></script>
 
 
 

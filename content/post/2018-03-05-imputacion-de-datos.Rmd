@@ -9,9 +9,18 @@ tags:
   - Imputación
   - PCA
 draft: false
+coverImage: https://commons.wikimedia.org/wiki/File:Babbage_Difference_Engine.jpg
+coverCaption: "Babbage difference engine"
+coverMeta: out
+coverSize: full
+showTags: true
+showPagination: true
+showSocial: true
+showDate: true
 ---
 
 # Imputación de datos en R
+<!-- toc -->
 
 ## Introducción
 
